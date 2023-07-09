@@ -1,0 +1,16 @@
+<%= form_with(model: [user, user_information]) do |form| %>
+  <div class="form-group w-50">
+    <%= form.label :hometown, "Hometown", class: "form-label" %>
+    <%= form.text_field :hometown,
+                       class: "form-control form-control-lg mb-1",
+                       placeholder: "Where are you from?" %>
+
+    <%= form.label :about_me, "About Me", class: "form-label" %>
+    <%= form.text_area :about_me,
+                       size: "70x6",
+                       class: "form-control form-control-lg mb-1",
+                       placeholder: "Something about yourself..." %>
+  </div>
+
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>

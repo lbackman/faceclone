@@ -1,0 +1,9 @@
+<h1>New post</h1>
+
+<%= render "form", author: current_user, post: @post %>
+
+<br>
+
+<div>
+  <%= link_to "Back to posts", posts_path %>
+</div>

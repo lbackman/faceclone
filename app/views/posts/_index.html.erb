@@ -1,0 +1,6 @@
+<% posts.each do |post| %>
+  <div class="container mb-3 card">
+    <%= render post %>
+    <%= link_to "Show this post", user_post_path(post.author, post) %>
+  </div>
+<% end %>

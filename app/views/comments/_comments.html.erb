@@ -1,0 +1,22 @@
+<% if commentable.comments_count > 0 %>
+  <h5>Comments</h5>
+  <% commentable.comments.each do |comment| %>
+    <article class="container card mb-2 py-2">
+      <p><%= comment.body %></p>
+      <small>
+        <span>
+          by <%= comment.author ? link_to(comment.author.full_name, comment.author) : "[deleted]" %>
+        </span>
+        <span
+          style="border-bottom: 1px dotted; text-decoration: none;"
+          title="<%= comment.created_at.localtime.to_fs(:db) %>">
+            <%= time_ago_in_words comment.created_at %> ago
+        </span>
+      </small>
+      <small><%= comment.likes.size %> <i class="bi bi-hand-thumbs-up"></i></small>
+      <small>
+        <%= render partial: 'likes/button', locals: { likeable: comment } %>
+      </small>
+    </article>
+  <% end %>
+<% end %>

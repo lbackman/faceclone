@@ -1,0 +1,12 @@
+<%= render @post %>
+
+<div>
+  <% if @post.author == current_user %>
+    <%= link_to "Edit this post", [:edit, @post.author, @post] %> |
+    <%= link_to "Back to posts", posts_path %>
+
+    <%= button_to "Destroy this post", user_post_path(@post.author, @post), method: :delete %>
+  <% else %>
+    <%= link_to "Back to posts", posts_path %>
+  <% end %>
+</div>

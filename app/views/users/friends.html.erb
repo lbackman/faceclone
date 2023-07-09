@@ -1,0 +1,9 @@
+<h1>Friends</h1>
+<% @friends.each do |friend| %>
+  <%= link_to user_path(friend) do %>
+    <%= render "user", user: friend %>
+  <% end %>
+<% end %>
+
+<%= link_to "Back to user", user_path(@user) %> |
+<%= link_to "Back to users", users_path %>

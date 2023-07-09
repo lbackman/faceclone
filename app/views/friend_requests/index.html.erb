@@ -1,0 +1,11 @@
+<h1>Friend Requests</h1>
+<h2>Sent</h2>
+<% @sent_friend_requests.each do |sent| %>
+  <% receiver = sent.receiver %>
+  <%= link_to "#{receiver.first_name} #{receiver.last_name}", user_path(receiver) %>
+<% end %>
+<h2>Received</h2>
+<% @received_friend_requests.each do |received| %>
+  <% sender = received.sender %>
+  <%= link_to "#{sender.first_name} #{sender.last_name}", user_path(sender) %>
+<% end %>

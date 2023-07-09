@@ -1,0 +1,12 @@
+<h1>Users</h1>
+
+<div id="users">
+  <% @users.each do |user| %>
+    <p>
+      <%= link_to user do %>
+        <i class="bi bi-person-circle"></i>
+        <%= user.full_name %>
+      <% end %>
+    </p>
+  <% end %>
+</div>

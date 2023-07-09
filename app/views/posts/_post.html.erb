@@ -1,0 +1,19 @@
+<div class="container" id="<%= dom_id post %>">
+  
+  <article class="container mb-2">
+      <p class="pt-3"><%= post.body %></p>
+      <small>
+        <span>by <%= link_to post.author.full_name, post.author %></span>
+        <span
+          style="border-bottom: 1px dotted; text-decoration: none;"
+          title="<%= post.created_at.localtime.to_fs(:db) %>">
+            <%= time_ago_in_words post.created_at %> ago
+        </span>
+      </small>
+      <p><%= post.likes.size %> <i class="bi bi-hand-thumbs-up"></i></p>
+    </article>
+
+  <p><%= render partial: 'likes/button', locals: { likeable: post } %></p>
+  <p><%= render partial: 'comments/comments', locals: { commentable: post } %></p>
+  <p><%= render partial: 'comments/form', locals: { commentable: post } %></p>
+</div>

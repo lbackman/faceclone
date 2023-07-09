@@ -1,0 +1,7 @@
+<%= form_for [commentable, Comment.new] do |f| %>
+  <div class="form-group w-50">
+    <%= f.label :body, "Comment Body", class: "form-control visually-hidden" %>
+    <%= f.text_area :body, class: "form-control form-control-sm mb-1", placeholder: "Write a comment" %>
+  </div>
+  <%= f.submit class: "btn btn-outline-primary btn-sm"%>
+<% end %>

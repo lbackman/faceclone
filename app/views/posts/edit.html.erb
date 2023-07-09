@@ -1,0 +1,10 @@
+<h1>Editing post</h1>
+
+<%= render "form", author: current_user, post: @post %>
+
+<br>
+
+<div>
+  <%= link_to "Show this post", [@post.author, @post] %> |
+  <%= link_to "Back to posts", posts_path %>
+</div>

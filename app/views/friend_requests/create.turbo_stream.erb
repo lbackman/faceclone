@@ -1,0 +1,2 @@
+<%= turbo_stream.replace("friend_buttons", partial: "users/friend_buttons", locals: { user: @other_user, friend_request: @friend_request }) %>
+<%= render_turbo_stream_flash_messages %>

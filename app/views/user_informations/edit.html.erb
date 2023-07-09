@@ -1,0 +1,10 @@
+<h1>User Information</h1>
+
+<%= render "form", user: @user, user_information: @user_information %>
+
+<br>
+
+<div>
+  <%= link_to "Cancel", @user %> |
+  <%= link_to "Back to Front Page", posts_path %>
+</div>

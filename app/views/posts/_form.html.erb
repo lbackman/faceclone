@@ -1,0 +1,22 @@
+<%= form_with(model: [author, post]) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group w-50">
+    <%= form.label :body, "Post Body", class: "form-control visually-hidden" %>
+    <%= form.text_area :body, class: "form-control form-control-lg mb-1", placeholder: "Tell everyone what's on your mind" %>
+  </div>
+
+  <%= form.hidden_field :author_id, value: author.id %>
+
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>

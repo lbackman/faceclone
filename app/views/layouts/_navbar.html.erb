@@ -1,0 +1,17 @@
+<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" style="background-color: #395693;">
+  <div class="container-fluid">
+    <%= link_to(user_signed_in? ? root_path : unauthenticated_root_path, class: "navbar-brand text-white") do %>
+      <h1 class="display-6">Faceclone</h1>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <% if user_signed_in? %>
+        <%= render 'layouts/navbar_signed_in' %>
+      <% else %>
+        <%= render 'layouts/navbar_signed_out' %>
+      <% end %>
+    </div>
+  </div>
+</nav>

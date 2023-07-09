@@ -1,0 +1,24 @@
+<span class="nav-item dropdown">
+  <a href="#" id="navbarDropdown" class="navlink dropdown-toggle d-flex align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="badge rounded-pill bg-danger">
+      <%= @unread.size > 9 ? "9+": @unread.size %> <i class="bi bi-suit-heart-fill"></i>
+    </span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-lg-end">
+    <% @unread.each do |notification| %>
+      <%= render 'layouts/notification', notification: notification %>
+    <% end %>
+    <% if @read.size > 0 && @unread.size > 0 %>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+    <% elsif @read.size + @unread.size == 0 %>
+      <li class="dropdown-item">
+        No notifications yet
+      </li>
+    <% end %>
+    <% @read.each do |notification| %>
+      <%= render 'layouts/notification', notification: notification %>
+    <% end %>
+  </ul>
+</span>
