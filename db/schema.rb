@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_09_055405) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_09_072107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_055405) do
     t.datetime "updated_at", null: false
     t.index ["read_at"], name: "index_notifications_on_read_at"
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text "body"
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
   end
 
   create_table "user_informations", force: :cascade do |t|
@@ -63,5 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_055405) do
 
   add_foreign_key "friend_requests", "users", column: "receiver_id"
   add_foreign_key "friend_requests", "users", column: "sender_id"
+  add_foreign_key "posts", "users", column: "author_id"
   add_foreign_key "user_informations", "users"
 end
