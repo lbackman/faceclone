@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_09_054724) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_09_055048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_054724) do
     t.index "GREATEST(sender_id, receiver_id), LEAST(sender_id, receiver_id)", name: "index_friend_requests_on_interchangable_sender_id_and_receiver_", unique: true
     t.index ["receiver_id"], name: "index_friend_requests_on_receiver_id"
     t.index ["sender_id"], name: "index_friend_requests_on_sender_id"
+  end
+
+  create_table "user_informations", force: :cascade do |t|
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.date "date_of_birth", default: "2023-07-09", null: false
+    t.string "hometown"
+    t.text "about_me"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_informations_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,4 +51,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_054724) do
 
   add_foreign_key "friend_requests", "users", column: "receiver_id"
   add_foreign_key "friend_requests", "users", column: "sender_id"
+  add_foreign_key "user_informations", "users"
 end
