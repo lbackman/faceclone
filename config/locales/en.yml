@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  notifications:
+    friend_request_notification:
+      message: "You have received a friend request from %{sender}"
