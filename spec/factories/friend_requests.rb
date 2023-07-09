@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :friend_request do
-    sender { nil }
-    receiver { nil }
+    sender { association :user }
+    receiver { association :user }
     accepted { false }
   end
 end
