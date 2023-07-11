@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_notifications, if: :current_user
 
+  protected
+
   def after_sign_out_path_for(resource_or_scope)
     unauthenticated_root_path
   end

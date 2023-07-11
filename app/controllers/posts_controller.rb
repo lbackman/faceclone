@@ -9,21 +9,26 @@ class PostsController < ApplicationController
       .with_author_information
   end
 
-  # GET /posts/1 or /posts/1.json
+  # GET users/1/posts/1 or users/1/posts/1.json
   def show
-    @post = Post.includes(comments: [author: [:user_information]]).find(params[:id])
+    @user = User.find(params[:user_id])
+    if current_user == @user || current_user.friends_with?(@user)
+      @post = Post.includes(comments: [author: [:user_information]]).find(params[:id])
+    else
+      render_access_denied
+    end
   end
 
-  # GET /posts/new
+  # GET users/1/posts/new
   def new
     @post = Post.new
   end
 
-  # GET /posts/1/edit
+  # GET users/1/posts/1/edit
   def edit
   end
 
-  # POST /posts or /posts.json
+  # POST users/1/posts or users/1/posts.json
   def create
     @post = Post.new(post_params)
 
@@ -41,7 +46,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
+  # PATCH/PUT users/1/posts/1 or users/1/posts/1.json
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -54,7 +59,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
+  # DELETE users/1/posts/1 or users/1/posts/1.json
   def destroy
     @post.destroy
 
