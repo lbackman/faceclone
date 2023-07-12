@@ -10,8 +10,17 @@ consumer.subscriptions.create("Noticed::NotificationChannel", {
   },
 
   received(data) {
-    console.log(data)
+    this.insertNotification(this.template(data))
     this.incrementNotificationCount()
+  },
+
+  insertNotification(link) {
+    const noNotifications = document.querySelector('.no-notifications')
+    if (noNotifications) {
+      noNotifications.remove()
+    }
+    const notificationDisplay = document.querySelector('#notification-display')
+    notificationDisplay.insertAdjacentHTML('afterbegin', link)
   },
 
   incrementNotificationCount() {
@@ -22,5 +31,9 @@ consumer.subscriptions.create("Noticed::NotificationChannel", {
     } else {
       notificationCount.innerText = "9+"
     }
+  },
+
+  template(data) {
+    return `<li class="dropdown-item"><a href="${data['url']}">${data['message']}</a></li>`
   }
 });

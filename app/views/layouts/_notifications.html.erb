@@ -4,7 +4,7 @@
       <span id="notification-count"><%= @unread.size > 9 ? "9+": @unread.size %></span> <i class="bi bi-suit-heart-fill"></i>
     </span>
   </a>
-  <ul class="dropdown-menu dropdown-menu-lg-end">
+  <ul id="notification-display" class="dropdown-menu dropdown-menu-lg-end">
     <% @unread.each do |notification| %>
       <%= render 'layouts/notification', notification: notification %>
     <% end %>
@@ -13,7 +13,7 @@
         <hr class="dropdown-divider">
       </li>
     <% elsif @read.size + @unread.size == 0 %>
-      <li class="dropdown-item">
+      <li class="dropdown-item no-notifications">
         No notifications yet
       </li>
     <% end %>

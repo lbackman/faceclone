@@ -7,7 +7,7 @@ class FriendRequestNotification < Noticed::Base
   # Add your delivery methods
   #
   deliver_by :database
-  deliver_by :action_cable
+  deliver_by :action_cable, format: :action_cable_data
   # deliver_by :email, mailer: "UserMailer"
   # deliver_by :slack
   # deliver_by :custom, class: "MyDeliveryMethod"
@@ -24,5 +24,12 @@ class FriendRequestNotification < Noticed::Base
   #
   def url
     user_path(User.find(params[:friend_request][:sender_id]))
+  end
+
+  def action_cable_data
+    {
+      message:,
+      url:
+    }
   end
 end
