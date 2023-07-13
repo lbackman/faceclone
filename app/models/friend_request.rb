@@ -3,6 +3,7 @@ class FriendRequest < ApplicationRecord
   belongs_to :receiver, class_name: "User"
 
   after_create_commit :notify_receiver
+  after_update_commit :delete_notification
   has_noticed_notifications # removes notification when deleting friend request
 
   validates :sender_id, :receiver_id,
@@ -22,5 +23,9 @@ class FriendRequest < ApplicationRecord
 
   def notify_receiver
     FriendRequestNotification.with(friend_request: self).deliver_later(receiver)
+  end
+
+  def delete_notification
+    self.notifications_as_friend_request.first.destroy
   end
 end
