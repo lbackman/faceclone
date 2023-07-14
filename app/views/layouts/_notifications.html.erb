@@ -5,20 +5,34 @@
     </span>
   </a>
   <ul id="notification-display" class="dropdown-menu dropdown-menu-lg-end">
-    <% @unread.each do |notification| %>
-      <%= render 'layouts/notification', notification: notification %>
-    <% end %>
-    <% if @read.size > 0 && @unread.size > 0 %>
-      <li>
-        <hr class="dropdown-divider">
-      </li>
-    <% elsif @read.size + @unread.size == 0 %>
-      <li class="dropdown-item no-notifications">
-        No notifications yet
-      </li>
-    <% end %>
-    <% @read.each do |notification| %>
-      <%= render 'layouts/notification', notification: notification %>
-    <% end %>
+    <li>
+      <ul class="notifications-list">
+        <li class="small"><i class="bi bi-envelope-exclamation"></i> Unread notifcations</li>
+        <% if @unread.size > 0 %>
+          <% @unread.each do |notification| %>
+            <%= render 'layouts/notification', notification: notification %>
+          <% end %>
+        <% else %>
+          <li class="dropdown-item">No unread notifications</li>
+        <% end %>
+      </ul>
+    </li>
+    
+    <li>
+      <hr class="dropdown-divider">
+    </li>
+    
+    <li>
+      <ul class="notifications-list">
+        <li class="small"><i class="bi bi-envelope-open"></i> Read notifications</li>
+        <% if @read.size > 0 %>
+          <% @read.each do |notification| %>
+            <%= render 'layouts/notification', notification: notification %>
+          <% end %>
+        <% else %>
+          <li class="dropdown-item">No read notifications</li>
+        <% end %>
+      </ul>
+    </li>
   </ul>
 </span>

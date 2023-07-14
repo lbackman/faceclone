@@ -2,3 +2,7 @@
 .dropdown-toggle::after { content: none; }
 
 a#navbarDropdown { text-decoration: none; }
+
+li.small { list-style-type: none; }
+
+ul.notifications-list { padding-left: 1rem; }
