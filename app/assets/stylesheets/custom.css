@@ -3,6 +3,6 @@
 
 a#navbarDropdown { text-decoration: none; }
 
-li.small { list-style-type: none; }
+small.small { margin-left: 1rem; }
 
 ul.notifications-list { padding-left: 1rem; }

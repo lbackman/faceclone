@@ -15,11 +15,11 @@ consumer.subscriptions.create("Noticed::NotificationChannel", {
   },
 
   insertNotification(link) {
-    const noNotifications = document.querySelector('.no-notifications')
-    if (noNotifications) {
-      noNotifications.remove()
+    const noUnreadNotifications = document.querySelector('.no-unread-notifications')
+    if (noUnreadNotifications) {
+      noUnreadNotifications.remove()
     }
-    const notificationDisplay = document.querySelector('#notification-display')
+    const notificationDisplay = document.querySelector('.notifications-list.unread')
     notificationDisplay.insertAdjacentHTML('afterbegin', link)
   },
 
