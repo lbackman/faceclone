@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'users/:id/friends', to: 'users#friends', as: :friends
 
   resources :likes, only: [:create, :destroy]
+  get 'posts/:id/likes', to: 'likes#index', as: :post_likes
+  get 'posts/:post_id/comments/:id/likes', to: 'likes#index', as: :comment_likes
 
   # Defines the root path route ("/")
   authenticated :user do
