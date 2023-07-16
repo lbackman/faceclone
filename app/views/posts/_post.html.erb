@@ -10,7 +10,11 @@
             <%= time_ago_in_words post.created_at %> ago
         </span>
       </small>
-      <p><%= post.likes.size %> <i class="bi bi-hand-thumbs-up"></i></p>
+      <% if post.likes.size > 0 %>
+        <%= link_to post_likes_path(post) do %>
+          <p><%= post.likes.size %> <i class="bi bi-hand-thumbs-up"></i></p>
+        <% end %>
+      <% end %>
     </article>
 
   <p><%= render partial: 'likes/button', locals: { likeable: post } %></p>

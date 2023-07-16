@@ -13,7 +13,11 @@
             <%= time_ago_in_words comment.created_at %> ago
         </span>
       </small>
-      <small><%= comment.likes.size %> <i class="bi bi-hand-thumbs-up"></i></small>
+      <% if comment.likes.size > 0 %>
+        <%= link_to comment_likes_path(commentable, comment) do %>
+          <small><%= comment.likes.size %> <i class="bi bi-hand-thumbs-up"></i></small>
+        <% end %>
+      <% end %>
       <small>
         <%= render partial: 'likes/button', locals: { likeable: comment } %>
       </small>
