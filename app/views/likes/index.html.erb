@@ -1,4 +1,6 @@
 <h1>Likes index</h1>
-<% @likes.each do |like| %>
-  <p><%= link_to like.user.full_name, user_path(like.user) %></p>
+<%= turbo_frame_tag "post_likes" do %>
+  <% @likes.each do |like| %>
+    <p><%= link_to like.user.full_name, user_path(like.user) %></p>
+  <% end %>
 <% end %>
