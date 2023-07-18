@@ -10,35 +10,10 @@
             <%= time_ago_in_words post.created_at %> ago
         </span>
       </small>
-      <% if post.likes.size > 0 %>
-        <%= link_to post_likes_path(post) do %>
-          <p><%= post.likes.size %> <i class="bi bi-hand-thumbs-up"></i></p>
-        <% end %>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#likesModal">
-          <p><%= post.likes.size %> <i class="bi bi-hand-thumbs-up"></i></p>
-        </button>
+      <% if post.likes.size.positive? %>
+        <br>
+        <%= render partial: 'likes/modal', locals: {type: "post", likeable: post, parent: nil} %>
 
-        <!-- Modal -->
-        <div class="modal fade" id="likesModal" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="likesModalLabel">Likes</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p>Modal body text goes here.</p>
-                <%= turbo_frame_tag "post_likes", src: post_likes_path(post), loading: "lazy" do %>
-                  <div>Likes go here...</div>
-                <% end %>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
       <% end %>
     </article>
 

@@ -13,14 +13,14 @@
             <%= time_ago_in_words comment.created_at %> ago
         </span>
       </small>
-      <% if comment.likes.size > 0 %>
-        <%= link_to comment_likes_path(commentable, comment) do %>
-          <small><%= comment.likes.size %> <i class="bi bi-hand-thumbs-up"></i></small>
-        <% end %>
+      <% if comment.likes.size.positive? %>
+
+        <%= render partial: 'likes/modal', locals: {type: "comment", likeable: comment, parent: commentable} %>
+
       <% end %>
-      <small>
-        <%= render partial: 'likes/button', locals: { likeable: comment } %>
-      </small>
     </article>
+    <small>
+      <%= render partial: 'likes/button', locals: { likeable: comment } %>
+    </small>
   <% end %>
 <% end %>
