@@ -1,13 +1,13 @@
 <% if likeable.likes.size.positive? %>
   <!-- Button trigger modal -->
-  <button type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#<%= type %>LikesModal<%= likeable.id %>">
+  <a href="#"
+     class="link-underline-primary"
+     data-bs-toggle="modal"
+     data-bs-target="#<%= type %>LikesModal<%= likeable.id %>">
 
-    <%= likeable.likes.size %> <i class="bi bi-hand-thumbs-up"></i>
+    <i class="bi bi-hand-thumbs-up"></i> <%= "#{like_sentence_helper(likeable.likes.size)}" %> 
 
-  </button>
+  </a>
 
   <!-- Modal -->
   <div class="modal fade"
