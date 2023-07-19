@@ -4,12 +4,8 @@
       <p class="pt-3"><%= post.body %></p>
 
       <%= render 'shared/author', text: post %>
-
-      <% if post.likes.size.positive? %>
-        <br>
-        <%= render partial: 'likes/modal', locals: {type: "post", likeable: post, parent: nil} %>
-
-      <% end %>
+      <br>
+      <%= render 'likes/modal', type: "post", likeable: post, parent: nil %>
     </article>
 
   <p><%= render partial: 'likes/button', locals: { likeable: post } %></p>

@@ -6,11 +6,7 @@
 
       <%= render 'shared/author', text: comment %>
 
-      <% if comment.likes.size.positive? %>
-
-        <%= render partial: 'likes/modal', locals: {type: "comment", likeable: comment, parent: commentable} %>
-
-      <% end %>
+      <%= render 'likes/modal', type: "comment", likeable: comment, parent: commentable %>
     </article>
     <small>
       <%= render partial: 'likes/button', locals: { likeable: comment } %>
