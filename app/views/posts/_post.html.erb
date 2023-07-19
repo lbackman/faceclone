@@ -2,14 +2,9 @@
   
   <article class="container mb-2">
       <p class="pt-3"><%= post.body %></p>
-      <small>
-        <span>by <%= link_to post.author.full_name, post.author %></span>
-        <span
-          style="border-bottom: 1px dotted; text-decoration: none;"
-          title="<%= post.created_at.localtime.to_fs(:db) %>">
-            <%= time_ago_in_words post.created_at %> ago
-        </span>
-      </small>
+
+      <%= render 'shared/author', text: post %>
+
       <% if post.likes.size.positive? %>
         <br>
         <%= render partial: 'likes/modal', locals: {type: "post", likeable: post, parent: nil} %>
