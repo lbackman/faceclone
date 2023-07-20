@@ -11,8 +11,8 @@ FactoryBot.define do
     first_name
     last_name
     date_of_birth { "2023-05-03" }
-    hometown { "MyString" }
-    about_me { "MyText" }
+    hometown { nil }
+    about_me { nil }
     user nil
   end
 end
