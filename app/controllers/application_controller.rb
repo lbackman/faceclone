@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_notifications, if: :current_user
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
@@ -24,5 +25,16 @@ class ApplicationController < ActionController::Base
     if current_user
       notifications.where(read_at: nil).update_all(read_at: Time.zone.now)
     end
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(
+      :email, :password, :password_confirmation,
+      user_information_attributes: [:id, :first_name, :last_name, :date_of_birth]
+    )}
+
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(
+      :avatar, :current_password, user_information_attributes: [:id, :hometown, :about_me]
+    )}
   end
 end
