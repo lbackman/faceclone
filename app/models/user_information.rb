@@ -3,7 +3,7 @@ class UserInformation < ApplicationRecord
   before_save :normalize_blank_values
 
   belongs_to :user
-  validates_presence_of :first_name, :last_name, :date_of_birth
+  validates_presence_of :first_name, :last_name, :date_of_birth, on: :create
 
   private
 
