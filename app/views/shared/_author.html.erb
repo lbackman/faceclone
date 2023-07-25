@@ -1,6 +1,14 @@
 <small>
   <span>
-    by <%= text.author ? link_to(text.author.full_name, text.author) : "[deleted]" %>
+    <% if text.author %>
+      <%= link_to(text.author) do %>
+        <%= render_user_avatar(text.author, 40, class: "rounded-circle") %>
+        <%= text.author.full_name %>
+      <% end %>
+    <% else %>
+      <%= image_tag "avatars/user-not-found.png", size: "20x20", alt: "Deleted user", class: "rounded" %>
+      <%= "[deleted]" %>
+    <% end %>
   </span>
   <span
     style="border-bottom: 1px dotted; text-decoration: none;"

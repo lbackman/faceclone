@@ -4,7 +4,7 @@
   <% @users.each do |user| %>
     <p>
       <%= link_to user do %>
-        <i class="bi bi-person-circle"></i>
+        <%= render_user_avatar(user, 40, class: "rounded") %>
         <%= user.full_name %>
       <% end %>
     </p>

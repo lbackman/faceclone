@@ -1,4 +1,5 @@
 <div id="<%= dom_id user %>" class="card mb-3">
+    <%= render_user_avatar(user, 100, class: "rounded") %>
     <strong><%= user.full_name %></strong>
     <strong><%= user.date_of_birth.strftime("Born on %d/%m/%Y") %></strong>
     <strong><%= user.hometown %></strong>
