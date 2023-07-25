@@ -6,9 +6,10 @@
   </ul>
   <ul class="navbar-nav ml-auto">
     <li class="nav-item p-2 d-flex align-items-center">
-      <%= link_to current_user, class: 'nav-link active text-white' do %>
+      <%= link_to current_user, class: 'nav-link active text-white d-flex align-items-center' do %>
         <%# If user has a profile picture show that instead, otherwise: %>
-        <i class="bi bi-person-circle"></i>
+        
+        <%= render_user_avatar(current_user, 32, class: "rounded-circle", style: "margin-right: 4px;") %>
         <%= current_user.first_name %>
       <% end %>
     </li>
