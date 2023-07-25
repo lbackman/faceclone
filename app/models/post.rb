@@ -6,7 +6,10 @@ class Post < ApplicationRecord
   validates :body, presence: true
 
   scope :with_author_information, -> do
-    includes(comments: [author: [:user_information]], author: [:user_information])
+    includes(
+      comments: [author: [:user_information, avatar_attachment: :blob]],
+      author: [:user_information, avatar_attachment: :blob]
+    )
   end
 
   scope :of_friends_and_user, ->(user) do

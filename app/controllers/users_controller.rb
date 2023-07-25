@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all.includes(:user_information).order(:created_at)
+    @users = User.all.includes(:user_information, avatar_attachment: :blob).order(:created_at)
   end
 
   def show
@@ -19,6 +19,6 @@ class UsersController < ApplicationController
 
   def friends
     @user = User.find_by_id(params[:id])
-    @friends = User.friends(@user).includes(:user_information)
+    @friends = User.friends(@user).includes(:user_information, avatar_attachment: :blob)
   end
 end

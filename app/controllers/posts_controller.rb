@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     if current_user == @user || current_user.friends_with?(@user)
-      @post = Post.includes(comments: [author: [:user_information]]).find(params[:id])
+      @post = Post.includes(comments: [author: [:user_information, avatar_attachment: :blob]]).find(params[:id])
     else
       render_access_denied
     end
