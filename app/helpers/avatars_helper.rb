@@ -8,7 +8,7 @@ module AvatarsHelper
   private
 
     def user_avatar(user, size)
-      if user.avatar.attached?
+      if user.avatar.attached? && user.avatar.variable?
         user.avatar.variant(resize_to_limit: [size, nil])
       else
         'avatars/stock_avatar.jpg'
