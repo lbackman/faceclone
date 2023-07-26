@@ -4,5 +4,5 @@
     <strong><%= user.date_of_birth.strftime("Born on %d/%m/%Y") %></strong>
     <strong><%= user.hometown %></strong>
     <strong><%= user.about_me %></strong>
-    <%= link_to "Edit account", edit_user_registration_path %>
+    <%= link_to "Edit account", edit_user_registration_path if current_user == user %>
 </div>
