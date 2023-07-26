@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_one_attached :avatar
+  validates :avatar,
+            content_type: ['image/png', 'image/jpeg'],
+            dimension: { width: { in: 80..250 }, height: { in: 80..250 } },
+            aspect_ratio: :square
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
