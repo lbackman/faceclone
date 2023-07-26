@@ -54,6 +54,8 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
+# For ative storage validations
+gem 'active_storage_validations'
 # For image analysis and transformations
 gem "ruby-vips"
 
