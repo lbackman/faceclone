@@ -2,7 +2,7 @@
   <span>
     <% if text.author %>
       <%= link_to(text.author) do %>
-        <%= render_user_avatar(text.author, 40, class: "rounded-circle") %>
+        <%= render_user_avatar(text.author, 128, class: "rounded-circle #{thumbnail}") %>
         <%= text.author.full_name %>
       <% end %>
     <% else %>

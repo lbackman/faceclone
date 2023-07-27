@@ -4,7 +4,7 @@
     <article class="container card mb-2 py-2">
       <p><%= comment.body %></p>
 
-      <%= render 'shared/author', text: comment %>
+      <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>
 
       <%= render 'likes/modal', type: "comment", likeable: comment, parent: commentable %>
     </article>

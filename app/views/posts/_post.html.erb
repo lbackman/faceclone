@@ -3,7 +3,7 @@
   <article class="container mb-2">
       <p class="pt-3"><%= post.body %></p>
 
-      <%= render 'shared/author', text: post %>
+      <%= render 'shared/author', text: post, thumbnail: "thumbnail-md" %>
       <br>
       <%= render 'likes/modal', type: "post", likeable: post, parent: nil %>
     </article>

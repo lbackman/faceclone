@@ -6,3 +6,18 @@ a#navbarDropdown { text-decoration: none; }
 small.small { margin-left: 1rem; }
 
 ul.notifications-list { padding-left: 1rem; }
+
+.thumbnail-sm {
+  width: 30px;
+  height: 30px;
+}
+
+.thumbnail-md {
+  width: 42px;
+  height: 42px;
+}
+
+.thumbnail-lg {
+  width: 56px;
+  height: 56px;
+}

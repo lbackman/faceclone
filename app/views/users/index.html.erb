@@ -4,7 +4,7 @@
   <% @users.each do |user| %>
     <p>
       <%= link_to user do %>
-        <%= render_user_avatar(user, 40, class: "rounded") %>
+        <%= render_user_avatar(user, 100, class: "rounded thumbnail-lg") %>
         <%= user.full_name %>
       <% end %>
     </p>
