@@ -2,9 +2,9 @@
   <h5>Comments</h5>
   <% commentable.comments.each do |comment| %>
     <article class="container card mb-2 py-2">
-      <p><%= comment.body %></p>
-
       <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>
+      <p class="pt-2 ms-2"><%= comment.body %></p>
+      <%= render 'shared/date_published', date_published: comment.created_at %>
 
       <%= render 'likes/modal', type: "comment", likeable: comment, parent: commentable %>
     </article>

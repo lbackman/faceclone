@@ -10,9 +10,4 @@
       <%= "[deleted]" %>
     <% end %>
   </span>
-  <span
-    style="border-bottom: 1px dotted; text-decoration: none;"
-    title="<%= text.created_at.localtime.to_fs(:db) %>">
-      <%= time_ago_in_words text.created_at %> ago
-  </span>
 </small>
