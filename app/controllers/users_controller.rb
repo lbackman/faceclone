@@ -21,4 +21,10 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
     @friends = User.friends(@user).includes(:user_information, avatar_attachment: :blob)
   end
+
+  def purge_avatar
+    @user = User.find_by_id(params[:id])
+    @user.avatar.purge
+    redirect_back(fallback_location: user_path(@user), notice: "Avatar removed")
+  end
 end

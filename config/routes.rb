@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :friend_requests, only: :index
     resources :posts, except: :index
     resource :user_information, only: [:edit, :update]
+    member do
+      delete :purge_avatar
+    end
   end
 
   resources :posts, only: :index do
