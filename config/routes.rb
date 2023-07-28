@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resource :user_information, only: [:edit, :update]
     member do
       delete :purge_avatar
+      get :friends
     end
   end
 
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :friend_requests, only: [:create, :update, :destroy]
-  get 'users/:id/friends', to: 'users#friends', as: :friends
 
   resources :likes, only: [:create, :destroy]
   get 'posts/:id/likes', to: 'likes#index', as: :post_likes
