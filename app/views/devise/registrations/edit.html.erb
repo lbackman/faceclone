@@ -63,12 +63,25 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name),
+<div class="accordion mt-4" id="deleteAccountAccordion" style="width: fit-content;">
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <span class="me-2">Cancel my account</span>
+      </button>
+    </h3>
+    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#deleteAccountAccordion">
+      <div class="accordion-body">
+        <strong>Unhappy?</strong>
+        <div> <%= button_to "Cancel my account", registration_path(resource_name),
                             data: { confirm: "Are you sure?",
                             turbo_confirm: "Are you sure?" },
                             method: :delete,
                             class: "btn btn-danger" %></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to "Back", :back %>
+<div class="my-2"><%= link_to "Back", :back %></div>
+
