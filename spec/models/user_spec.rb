@@ -1,6 +1,8 @@
 require 'rails_helper'
+require 'helpers/remove_uploaded_files'
 
 RSpec.describe User, type: :model do
+  prepend RemoveUploadedFiles
   it { is_expected.to validate_content_type_of(:avatar)
     .allowing('image/png', 'image/jpeg')
     .rejecting('text/plain', 'text/xml')
