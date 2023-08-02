@@ -8,5 +8,8 @@
         <%= user.full_name %>
       <% end %>
     </div>
+    <%= render 'friend_buttons', 
+                user: user,
+                friend_request: @friend_requests.mutual(user, current_user) || FriendRequest.new %>
   <% end %>
 </div>
