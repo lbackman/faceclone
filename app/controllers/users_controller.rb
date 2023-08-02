@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.includes(:user_information, avatar_attachment: :blob).order(:created_at)
-    id = current_user.id
-    @friend_requests = FriendRequest.where("friend_requests.receiver_id = ? OR friend_requests.sender_id = ?", id, id)
+    index_users = User.includes(:user_information, avatar_attachment: :blob).order(:created_at)
+    @users = {}
+    index_users.each do |user|
+      @users[user] = FriendRequest.mutual(user, current_user) || FriendRequest.new
+    end
   end
 
   def show
