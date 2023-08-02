@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
-    @friend_request = FriendRequest.mutual(current_user, @user).first || FriendRequest.new
+    @friend_request = FriendRequest.mutual(current_user, @user) || FriendRequest.new
     if current_user == @user || current_user.friends_with?(@user)
       @posts = Post.where(author: @user).with_author_information.order(created_at: :desc)
     else
