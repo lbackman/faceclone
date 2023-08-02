@@ -5,6 +5,12 @@ class UsersController < ApplicationController
     index_users.each do |user|
       @users[user] = FriendRequest.mutual(user, current_user) || FriendRequest.new
     end
+
+    @users.each do |_user, friend_request|
+      if friend_request.receiver == current_user
+        mark_notifications_as_read(friend_request.notifications_as_friend_request.where(recipient: current_user))
+      end
+    end
   end
 
   def show
