@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :create] do
     resources :friend_requests, only: :index
     resources :posts, except: :index
-    resource :user_information, only: [:edit, :update]
     member do
       delete :purge_avatar
       get :friends
