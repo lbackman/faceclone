@@ -2,12 +2,7 @@
 
 <div id="users">
   <% @users.each do |user, friend_request| %>
-    <div class="user_<%= user.id %> mb-2">
-      <%= link_to user do %>
-        <%= render_user_avatar(user, 100, class: "rounded thumbnail-lg") %>
-        <%= user.full_name %>
-      <% end %>
-    </div>
+    <%= render 'user_with_avatar', user: user, avatar_resolution: 100 %>
     <%= render 'friend_buttons', user: user, friend_request: friend_request %>
   <% end %>
 </div>
