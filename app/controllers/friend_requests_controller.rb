@@ -5,6 +5,10 @@ class FriendRequestsController < ApplicationController
   def index
     @sent_friend_requests = FriendRequest.sent(@user)
     @received_friend_requests = FriendRequest.received(@user)
+
+    @received_friend_requests.each do |friend_request|
+      mark_notifications_as_read(friend_request.notifications_as_friend_request.where(recipient: current_user))
+    end
   end
 
   def create

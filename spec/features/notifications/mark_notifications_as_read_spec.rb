@@ -59,4 +59,21 @@ RSpec.describe 'Mark notifications as read', type: :system do
       expect(other_user_read_before).to eq(other_user_read_after)
     end
   end
+
+  context 'visiting friend requests index' do
+    it 'will mark both as read' do
+      visit user_friend_requests_path(@receiver)
+
+      @read_count = @receiver.notifications.count(:read_at)
+      expect(@read_count).to eq(2)
+    end
+
+    it 'does not affect notifications of others' do
+      other_user_read_before = @sender_2.notifications.count(:read_at)
+
+      visit user_friend_requests_path(@receiver)
+      other_user_read_after = @sender_2.notifications.count(:read_at)
+      expect(other_user_read_before).to eq(other_user_read_after)
+    end
+  end
 end
