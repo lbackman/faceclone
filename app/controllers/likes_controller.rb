@@ -5,7 +5,9 @@ class LikesController < ApplicationController
     else
       @type = "Post"
     end
-    @likes = Like.where(likeable_type: @type, likeable_id: params[:id]).includes(user: [:user_information])
+    @likes = Like
+              .where(likeable_type: @type, likeable_id: params[:id])
+              .includes(user: [:user_information, avatar_attachment: :blob])
   end
 
   def create

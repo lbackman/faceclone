@@ -12,8 +12,15 @@ class FriendRequest < ApplicationRecord
 
   validates :sender_id, comparison: { other_than: :receiver_id }
 
-  scope :sent, ->(user) { FriendRequest.where(sender: user, accepted: false) }
-  scope :received, ->(user) { FriendRequest.where(receiver: user, accepted: false) }
+  scope :sent, ->(user) {
+    FriendRequest
+      .includes(receiver: [:user_information, avatar_attachment: :blob])
+      .where(sender: user, accepted: false) }
+
+  scope :received, ->(user) {
+    FriendRequest
+    .includes(sender: [:user_information, avatar_attachment: :blob])
+    .where(receiver: user, accepted: false) }
 
   def self.mutual(user_1, user_2)
     FriendRequest.find_by(sender: [user_1, user_2], receiver: [user_1, user_2])
