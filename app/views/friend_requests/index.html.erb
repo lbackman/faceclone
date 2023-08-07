@@ -1,9 +1,13 @@
 <h1>Friend Requests</h1>
 <h2>Sent</h2>
 <% @sent_friend_requests.each do |sent| %>
-  <%= render '/users/user_with_avatar', user: sent.receiver, avatar_resolution: 100 %>
+  <% receiver = sent.receiver %>
+  <%= render '/users/user_with_avatar', user: receiver, avatar_resolution: 100 %>
+  <%= render 'users/friend_buttons', user: receiver, friend_request: sent %>
 <% end %>
 <h2>Received</h2>
 <% @received_friend_requests.each do |received| %>
+  <% sender = received.sender %>
   <%= render '/users/user_with_avatar', user: received.sender, avatar_resolution: 100 %>
+  <%= render 'users/friend_buttons', user: sender, friend_request: received %>
 <% end %>
