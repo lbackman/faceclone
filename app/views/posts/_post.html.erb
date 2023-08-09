@@ -4,12 +4,11 @@
       <%= render 'shared/author', text: post, thumbnail: "thumbnail-md" %>
       <p class="pt-3 ms-2"><%= post.body %></p>
       <%= render 'shared/date_published', date_published: post.created_at %>
-      
       <br>
       <%= render 'likes/modal', type: "post", likeable: post, parent: nil %>
-    </article>
+  </article>
 
-  <p><%= render partial: 'likes/button', locals: { likeable: post } %></p>
-  <p><%= render partial: 'comments/comments', locals: { commentable: post } %></p>
-  <p><%= render partial: 'comments/form', locals: { commentable: post } %></p>
+  <%= render partial: 'likes/button', locals: { likeable: post } %>
+  <%= render partial: 'comments/comments', locals: { commentable: post } %>
+  <%= render partial: 'comments/form', locals: { commentable: post } %>
 </div>
