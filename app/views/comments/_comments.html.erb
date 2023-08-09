@@ -1,6 +1,8 @@
 <% if commentable.comments_count > 0 %>
   <h5>Comments</h5>
-  <% commentable.comments.each do |comment| %>
-    <%= render 'comments/comment', comment:, commentable: %>
-  <% end %>
+  <div id="<%= dom_id(commentable, :comments) %>">
+    <% commentable.comments.each do |comment| %>
+      <%= render 'comments/comment', comment:, commentable: %>
+    <% end %>
+  </div>
 <% end %>
