@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_access_denied
-    render :file => "#{Rails.root}/public/403.html",  :status => 403, layout: false, status: :forbidden
+    render :file => "#{Rails.root}/public/403.html", layout: false, status: :forbidden
   end
 
   private
