@@ -7,9 +7,7 @@ class UsersController < ApplicationController
     end
 
     @users.each do |_user, friend_request|
-      if friend_request.receiver == current_user
-        mark_notifications_as_read(friend_request.notifications_as_friend_request.where(recipient: current_user))
-      end
+      mark_friend_request_notifications_as_read(friend_request)
     end
   end
 
@@ -22,9 +20,7 @@ class UsersController < ApplicationController
       @posts = Post.where(author: nil)
     end
 
-    if @user != current_user && @friend_request.created_at
-      mark_notifications_as_read(@friend_request.notifications_as_friend_request.where(recipient: current_user))
-    end
+    mark_friend_request_notifications_as_read(@friend_request)
   end
 
   def friends
@@ -37,4 +33,14 @@ class UsersController < ApplicationController
     @user.avatar.purge
     redirect_back(fallback_location: user_path(@user), notice: "Avatar removed")
   end
+
+  private
+
+    def mark_friend_request_notifications_as_read(friend_request)
+      if friend_request.receiver == current_user
+        mark_notifications_as_read(
+          friend_request.notifications_as_friend_request.where(recipient: current_user)
+        )
+      end
+    end
 end
