@@ -1,6 +1,7 @@
-<% if commentable.comments_count > 0 %>
-  <h5>Comments</h5>
-  <div id="<%= dom_id(commentable, :comments) %>">
-    <%= render commentable.comments, commentable: %>
-  </div>
-<% end %>
+<div id="<%= dom_id(commentable, :comments) %>">
+  <% if commentable.comments_count > 0 %>
+    <h5>Comments</h5>
+  <% end %>
+  
+  <%= render commentable.comments, commentable: %>
+</div>
