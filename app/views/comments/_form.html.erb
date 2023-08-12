@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "comment_form" do %>
+<%= turbo_frame_tag "comment_form_#{commentable.class.to_s.downcase}_#{commentable.id}" do %>
   <%# form_for [commentable, comment] do |f| %>
   <%= form_with model: comment, url: post_comments_path(commentable) do |f| %>
     <div class="form-group w-50">

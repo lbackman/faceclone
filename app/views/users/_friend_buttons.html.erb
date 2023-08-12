@@ -1,15 +1,15 @@
-<% unless current_user == user %>
-  <%= turbo_frame_tag friend_buttons_id(current_user.id, user.id), target: '_top' do %>
-    <% if current_user.friends_with?(user) %>
+<% unless user == other_user %>
+  <%= turbo_frame_tag friend_buttons_id(user.id, other_user.id), target: '_top' do %>
+    <% if user.friends_with?(other_user) %>
       <%= button_to "Unfriend", friend_request, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-    <% elsif current_user.sent_friend_request_to?(user) %>
+    <% elsif user.sent_friend_request_to?(other_user) %>
       <%= button_to "Remove Friend Request", friend_request, method: :delete %>
-    <% elsif current_user.received_friend_request_from?(user) %>
+    <% elsif user.received_friend_request_from?(other_user) %>
       <%= button_to "Accept Friend Request", friend_request, method: :patch %>
       <%= button_to "Decline Friend Request", friend_request, method: :delete %>
     <% else %>
       <%= button_to "Add Friend", friend_request, params: {
-        friend_request: {sender_id: current_user.id, receiver_id: user.id}
+        friend_request: {sender_id: user.id, receiver_id: other_user.id}
       } %>
     <% end %>
   <% end %>

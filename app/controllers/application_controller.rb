@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :set_current_user, if: :user_signed_in?
   before_action :set_notifications, if: :current_user
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -14,6 +15,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_current_user
+    Current.user = current_user
+  end
 
   def set_notifications
     notifications = Notification.where(recipient: current_user).newest_first.limit(9).includes([:recipient])

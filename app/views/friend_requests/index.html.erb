@@ -3,11 +3,11 @@
 <% @sent_friend_requests.each do |sent| %>
   <% receiver = sent.receiver %>
   <%= render '/users/user_with_avatar', user: receiver, avatar_resolution: 100 %>
-  <%= render 'users/friend_buttons', user: receiver, friend_request: sent %>
+  <%= render 'users/friend_buttons', user: Current.user, other_user: receiver, friend_request: sent %>
 <% end %>
 <h2>Received</h2>
 <% @received_friend_requests.each do |received| %>
   <% sender = received.sender %>
   <%= render '/users/user_with_avatar', user: sender, avatar_resolution: 100 %>
-  <%= render 'users/friend_buttons', user: sender, friend_request: received %>
+  <%= render 'users/friend_buttons', user: Current.user, other_user: sender, friend_request: received %>
 <% end %>

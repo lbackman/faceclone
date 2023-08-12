@@ -7,10 +7,10 @@ class Comment < ApplicationRecord
 
   validates :body, presence: true
 
-  after_create_commit {
-    broadcast_append_to [commentable, :comments],
+  after_create_commit -> {
+    broadcast_append_later_to [commentable, :comments],
       target: "#{dom_id(commentable, :comments)}",
       partial: "comments/comment",
-      locals: { comment: self, commentable: }
+      locals: { comment: self, commentable:, user: Current.user }
   }
 end

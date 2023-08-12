@@ -8,10 +8,10 @@
       <%= render 'likes/modal', type: "post", likeable: post, parent: nil %>
   </article>
 
-  <%= render partial: 'likes/button', locals: { likeable: post } %>
+  <%= render partial: 'likes/button', locals: { likeable: post, liker: user } %>
 
   <%= turbo_stream_from post, :comments %>
-  <%= render partial: 'comments/comments', locals: { commentable: post } %>
+  <%= render partial: 'comments/comments', locals: { commentable: post, user: } %>
 
   <%= render partial: 'comments/form', locals: { commentable: post, comment: Comment.new } %>
 </div>

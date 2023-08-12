@@ -1,4 +1,4 @@
-<% like = current_user.likes.find_by(likeable: likeable) %>
+<% like = liker.likes.find_by(likeable: likeable) %>
 
 <% if like.nil? %>
   <form action="/likes" method="post">

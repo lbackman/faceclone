@@ -1,7 +1,7 @@
-<%= render @post %>
+<%= render @post, user: Current.user %>
 
 <div>
-  <% if @post.author == current_user %>
+  <% if @post.author == Current.user %>
     <%= link_to "Edit this post", [:edit, @post.author, @post] %> |
     <%= link_to "Back to posts", posts_path %>
 

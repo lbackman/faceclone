@@ -2,15 +2,15 @@
   <%= render @user %>
   
   <%= link_to 'Friends', friends_user_path %>
-  <%= link_to 'Friend Requests', user_friend_requests_path(@user) if @user == current_user %>
+  <%= link_to 'Friend Requests', user_friend_requests_path(@user) if @user == Current.user %>
   
-  <%= render 'friend_buttons', user: @user, friend_request: @friend_request %>
+  <%= render 'friend_buttons', user: Current.user, other_user: @user, friend_request: @friend_request %>
   
-  <% if @user == current_user %>
+  <% if @user == Current.user %>
     <div class="mb-3">
       <%= render partial: 'posts/form', locals: { author: @user, post: Post.new } %>
     </div>
   <% end %>
   
-  <%= render partial: 'posts/index', locals: { posts: @posts } %>
+  <%= render partial: 'posts/index', locals: { posts: @posts, user: Current.user } %>
 </div>
