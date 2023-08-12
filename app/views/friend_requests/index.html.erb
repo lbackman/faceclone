@@ -8,6 +8,6 @@
 <h2>Received</h2>
 <% @received_friend_requests.each do |received| %>
   <% sender = received.sender %>
-  <%= render '/users/user_with_avatar', user: received.sender, avatar_resolution: 100 %>
+  <%= render '/users/user_with_avatar', user: sender, avatar_resolution: 100 %>
   <%= render 'users/friend_buttons', user: sender, friend_request: received %>
 <% end %>
