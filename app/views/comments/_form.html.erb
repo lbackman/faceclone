@@ -1,4 +1,5 @@
-<%= form_with model: [commentable, comment], id: dom_id_for_records(commentable, comment) do |f| %>
+<% model = [local_assigns[:commentable], comment].compact %>
+<%= form_with model: model, id: dom_id_for_records(*model) do |f| %>
   <% if f.object.errors.any? %>
     <div data-controller="flash" role="alert" class="alert alert-danger alert-dismissible fade show">
       <% f.object.errors.full_messages.each do |message| %>
@@ -12,4 +13,5 @@
     <%= f.text_area :body, class: "form-control form-control-sm mb-1", placeholder: "Write a comment" %>
   </div>
   <%= f.submit class: "btn btn-outline-primary btn-sm"%>
+  <%= link_to "Cancel", comment, class: "btn btn-link" if f.object.persisted? %>
 <% end %>

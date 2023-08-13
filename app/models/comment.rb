@@ -13,4 +13,12 @@ class Comment < ApplicationRecord
       partial: "comments/comment",
       locals: { comment: self, commentable:, user: Current.user }
   }
+
+  after_update_commit -> {
+    broadcast_replace_later_to self, locals: { comment: self, commentable:, user: Current.user }
+  }
+
+  after_destroy_commit -> {
+    broadcast_remove_to self
+  }
 end

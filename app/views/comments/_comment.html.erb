@@ -1,3 +1,4 @@
+<%= turbo_stream_from comment %>
 <%= turbo_frame_tag comment do %>
   <article class="container card mb-2 py-2">
     <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>

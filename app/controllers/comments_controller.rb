@@ -8,15 +8,27 @@ class CommentsController < ApplicationController
   end
 
   def update
+    if @comment.update(comment_params)
+      redirect_to @comment
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    commentable = @comment.commentable
+    @comment.destroy
+
+    respond_to do |format|
+      format.turbo_stream {}
+      format.html { redirect_back(fallback_location: commentable) }
+    end
   end
 
   private
 
     def set_comment
-      # @comment = current_user.comments.find(params[:id])
+      @comment = current_user.comments.find(params[:id])
     end
 
     def comment_params
