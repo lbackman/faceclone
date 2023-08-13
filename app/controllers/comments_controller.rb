@@ -1,21 +1,23 @@
 class CommentsController < ApplicationController
-  def create
-    @comment = @commentable.comments.new(comment_params)
-    @comment.author = current_user
-    
-    respond_to do |format|
-      if @comment.save
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("comment_form_#{@commentable.class.to_s.downcase}_#{@commentable.id}", partial: 'comments/form', locals: { commentable: @commentable, comment: Comment.new }) }
-        format.html { render partial: 'comments/form', locals: { commentable: @commentable, comment: Comment.new }}
-      else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("comment_form_#{@commentable.class.to_s.downcase}_#{@commentable.id}", partial: 'comments/form', locals: { commentable: @commentable, comment: @comment }) }
-        format.html { render partial: 'comments/form', locals: { commentable: @commentable, comment: @comment }}
-      end
-    # redirect_back(fallback_location: @commentable)
-    end
+  before_action :set_comment
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private
+
+    def set_comment
+      # @comment = current_user.comments.find(params[:id])
+    end
 
     def comment_params
       params.require(:comment).permit(:body)
