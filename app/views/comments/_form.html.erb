@@ -1,18 +1,15 @@
-<%= turbo_frame_tag "comment_form_#{commentable.class.to_s.downcase}_#{commentable.id}" do %>
-  <%# form_for [commentable, comment] do |f| %>
-  <%= form_with model: comment, url: post_comments_path(commentable) do |f| %>
-    <% if f.object.errors.any? %>
-      <div data-controller="flash" role="alert" class="alert alert-danger alert-dismissible fade show">
-        <% f.object.errors.full_messages.each do |message| %>
-          <div><%= message %></div>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="form-group w-50">
-      <%= f.label :body, "Comment Body", class: "form-control visually-hidden" %>
-      <%= f.text_area :body, class: "form-control form-control-sm mb-1", placeholder: "Write a comment" %>
+<%= form_with model: [commentable, comment], id: dom_id_for_records(commentable, comment) do |f| %>
+  <% if f.object.errors.any? %>
+    <div data-controller="flash" role="alert" class="alert alert-danger alert-dismissible fade show">
+      <% f.object.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <% end %>
     </div>
-    <%= f.submit class: "btn btn-outline-primary btn-sm"%>
   <% end %>
+  <div class="form-group w-50">
+    <%= f.label :body, "Comment Body", class: "form-control visually-hidden" %>
+    <%= f.text_area :body, class: "form-control form-control-sm mb-1", placeholder: "Write a comment" %>
+  </div>
+  <%= f.submit class: "btn btn-outline-primary btn-sm"%>
 <% end %>

@@ -1,12 +1,23 @@
-<div id="<%= dom_id(comment) %>">
+<%= turbo_frame_tag comment do %>
   <article class="container card mb-2 py-2">
     <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>
+
     <p class="pt-2 ms-2"><%= comment.body %></p>
-    <%= render 'shared/date_published', date_published: comment.created_at %>
-  
+
+    <div class="d-flex justify-content-between">
+      <%= render 'shared/date_published', date_published: comment.created_at %>
+        <% if comment.author == user %>
+          <div class="d-flex">
+            <%= link_to "Edit", edit_comment_path(comment), class: "me-2" %>
+            <%= button_to "Delete", comment_path(comment), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+          </div>
+        <% end %>
+    </div>
+
     <%= render 'likes/modal', type: "comment", likeable: comment, parent: commentable %>
   </article>
+
   <small>
     <%= render partial: 'likes/button', locals: { likeable: comment, liker: user } %>
   </small>
-</div>
+<% end %>
