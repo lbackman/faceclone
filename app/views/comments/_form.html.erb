@@ -1,5 +1,5 @@
 <% model = [local_assigns[:commentable], comment].compact %>
-<%= form_with model: model, id: dom_id_for_records(*model) do |f| %>
+<%= form_with model: model, id: dom_id_for_records(*model, prefix: "form") do |f| %>
   <% if f.object.errors.any? %>
     <div data-controller="flash" role="alert" class="alert alert-danger alert-dismissible fade show">
       <% f.object.errors.full_messages.each do |message| %>

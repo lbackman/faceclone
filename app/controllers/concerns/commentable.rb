@@ -10,10 +10,10 @@ module Commentable
     respond_to do |format|
       if @comment.save
         comment = Comment.new
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, comment), partial: 'comments/form', locals: { commentable: @commentable, comment: comment }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, comment, prefix: "form"), partial: 'comments/form', locals: { commentable: @commentable, comment: comment }) }
         format.html { render partial: 'comments/form', locals: { commentable: @commentable, comment: comment }}
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, @comment), partial: 'comments/form', locals: { commentable: @commentable, comment: @comment }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, @comment, prefix: "form"), partial: 'comments/form', locals: { commentable: @commentable, comment: @comment }) }
         format.html { render partial: 'comments/form', locals: { commentable: @commentable, comment: @comment }}
       end
     # redirect_back(fallback_location: @commentable)
