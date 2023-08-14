@@ -1,5 +1,5 @@
 <%= turbo_stream_from comment %>
-<%= turbo_frame_tag comment do %>
+<%= turbo_frame_tag dom_id(comment) do %>
   <article class="container card mb-2 py-2">
     <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>
 
@@ -7,12 +7,8 @@
 
     <div class="d-flex justify-content-between">
       <%= render 'shared/date_published', date_published: comment.created_at %>
-        <% if comment.author == user %>
-          <div class="d-flex">
-            <%= link_to "Edit", edit_comment_path(comment), class: "me-2" %>
-            <%= button_to "Delete", comment_path(comment), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
-          </div>
-        <% end %>
+      <%= turbo_frame_tag ["controls", dom_id(comment)] %>
+      <%= render "comments/user_controls", comment: comment if defined?(author) && author == comment.author %>
     </div>
 
     <%= render 'likes/modal', type: "comment", likeable: comment, parent: commentable %>

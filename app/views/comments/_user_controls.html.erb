@@ -1,0 +1,10 @@
+<div id="<%= dom_id(comment, "edit_delete")%>" class="d-flex">
+  <%= link_to "Edit",
+              edit_comment_path(comment),
+              class: "me-2" %>
+  <%= button_to "Delete",
+                comment_path(comment),
+                method: :delete,
+                data: { turbo_confirm: "Are you sure?" },
+                class: "btn btn-sm btn-danger" %>
+</div>

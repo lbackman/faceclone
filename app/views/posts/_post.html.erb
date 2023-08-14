@@ -10,8 +10,8 @@
 
   <%= render partial: 'likes/button', locals: { likeable: post, liker: user } %>
 
+  <%= turbo_stream_from user&.to_gid_param %>
   <%= turbo_stream_from post, :comments %>
-  <%= render partial: 'comments/comments', locals: { commentable: post, user: } %>
-
+  <%= render partial: 'comments/comments', locals: { commentable: post, user: user, author: user } %>
   <%= render partial: 'comments/form', locals: { commentable: post, comment: Comment.new } %>
 </div>

@@ -9,13 +9,21 @@ class Comment < ApplicationRecord
 
   after_create_commit -> {
     broadcast_append_later_to [commentable, :comments],
-      target: "#{dom_id(commentable, :comments)}",
-      partial: "comments/comment",
-      locals: { comment: self, commentable:, user: Current.user }
+                              target: "#{dom_id(commentable, :comments)}",
+                              partial: "comments/comment",
+                              locals: { comment: self, commentable:, user: Current.user }
+    broadcast_append_later_to [author&.to_gid_param],
+                              target: "controls_comment_#{id}",
+                              partial: "comments/user_controls",
+                              locals: { comment: self, author: author }
   }
 
   after_update_commit -> {
     broadcast_replace_later_to self, locals: { comment: self, commentable:, user: Current.user }
+    broadcast_append_later_to [author&.to_gid_param],
+                              target: "controls_comment_#{id}",
+                              partial: "comments/user_controls",
+                              locals: { comment: self, author: author }
   }
 
   after_destroy_commit -> {
