@@ -1,7 +1,7 @@
 <small>
   <span>
     <% if text.author %>
-      <%= link_to(text.author) do %>
+      <%= link_to(text.author, data: { turbo_frame: "_top" }) do %>
         <%= render_user_avatar(text.author, 128, class: "rounded-circle #{thumbnail}") %>
         <%= text.author.full_name %>
       <% end %>
