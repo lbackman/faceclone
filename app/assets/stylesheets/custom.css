@@ -21,3 +21,7 @@ ul.notifications-list { padding-left: 1rem; }
   width: 56px;
   height: 56px;
 }
+
+button.btn span.comment { font-size: 0.75rem; }
+
+.like-count.comment { font-size: 0.875rem; }

@@ -1,4 +1,5 @@
 <% like = liker.likes.find_by(likeable: likeable) %>
+<% type ||= '' %>
 
 <% if like.nil? %>
   <%# the form_with helper automatically excludes form authenticity token over turbo stream %>
@@ -6,7 +7,7 @@
     <input type="hidden" name="like[likeable_id]" value="<%= likeable.id %>" autocomplete="off">
     <input type="hidden" name="like[likeable_type]" value="<%= likeable.class.to_s %>" autocomplete="off">
     <button class="btn btn-sm btn-success <%= likeable.class.to_s.downcase %> like" type="submit">
-      <i class="bi bi-hand-thumbs-up-fill"></i> Like
+      <span class="<%= type %>"><i class="bi bi-hand-thumbs-up-fill"></i> Like</span>
     </button>
   <% end %>
   
@@ -15,7 +16,7 @@
     <input type="hidden" name="_method" value="delete" autocomplete="off">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" autocomplete="off">
     <button class="btn btn-sm btn-success <%= likeable.class.to_s.downcase %> unlike" type="submit">
-      <i class="bi bi-hand-thumbs-down-fill"></i> Unlike
+      <span class="<%= type %>"><i class="bi bi-hand-thumbs-down-fill"></i> Unlike</span>
     </button>
   </form>
 <% end %>

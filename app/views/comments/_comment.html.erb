@@ -1,20 +1,17 @@
 <%= turbo_stream_from comment %>
 <%= turbo_frame_tag dom_id(comment) do %>
   <article class="container card mb-2 py-2">
-    <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>
-
-    <p class="pt-2 ms-2"><%= comment.body %></p>
-
-    <div class="d-flex justify-content-between">
-      <%= render 'shared/date_published', date_published: comment.created_at %>
-      <%= turbo_frame_tag ["controls", dom_id(comment)] %>
-      <%= render "comments/user_controls", comment: comment if defined?(author) && author == comment.author %>
+    <div style="font-size: 0.875rem;">
+      <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>
+      <p class="pt-2 ms-2"><%= comment.body %></p>
+      <div class="d-flex justify-content-between">
+        <%= render 'shared/date_published', date_published: comment.created_at %>
+        <%= turbo_frame_tag ["controls", dom_id(comment)] %>
+        <%= render "comments/user_controls", comment: comment if defined?(author) && author == comment.author %>
+      </div>
     </div>
-
-    <%= render 'likes/modal', type: "comment", likeable: comment, parent: commentable %>
+    <% type = comment.class.to_s.downcase %>
+    <%= render partial: 'likes/modal', locals: { likeable: comment, parent: commentable, type: } %>
+    <%= render partial: 'likes/button', locals: { likeable: comment, liker: user, type: } %>
   </article>
-
-  <small>
-    <%= render partial: 'likes/button', locals: { likeable: comment, liker: user } %>
-  </small>
 <% end %>

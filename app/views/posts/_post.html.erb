@@ -5,10 +5,9 @@
       <p class="pt-3 ms-2"><%= post.body %></p>
       <%= render 'shared/date_published', date_published: post.created_at %>
       <br>
-      <%= render 'likes/modal', type: "post", likeable: post, parent: nil %>
+      <%= render partial: 'likes/modal', locals: { type: post.class.to_s.downcase, likeable: post, parent: nil } %>
+      <%= render partial: 'likes/button', locals: { likeable: post, liker: user } %>
   </article>
-
-  <%= render partial: 'likes/button', locals: { likeable: post, liker: user } %>
 
   <%= turbo_stream_from user&.to_gid_param %>
   <%= turbo_stream_from post, :comments %>

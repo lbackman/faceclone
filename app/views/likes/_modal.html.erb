@@ -5,7 +5,9 @@
      data-bs-toggle="modal"
      data-bs-target="#<%= type %>LikesModal<%= likeable.id %>">
 
-    <i class="bi bi-hand-thumbs-up"></i> <%= "#{like_sentence_helper(likeable.likes.size)}" %> 
+    <div class="like-count <%= type %>">
+      <i class="bi bi-hand-thumbs-up"></i> <%= "#{like_sentence_helper(likeable.likes.size)}" %>
+    </div>
 
   </a>
 
