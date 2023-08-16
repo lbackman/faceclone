@@ -1,0 +1,5 @@
+<%# turbo_stream_from "likes_#{dom_id(likeable)}" %>
+<%= turbo_frame_tag "#{dom_id(likeable, :likes)}" do%>
+  <%= render partial: 'likes/modal', locals: { likeable:, parent:, type: } %>
+  <%= render partial: 'likes/button', locals: { likeable:, liker:, type: } %>
+<% end %>

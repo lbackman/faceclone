@@ -11,7 +11,6 @@
       </div>
     </div>
     <% type = comment.class.to_s.downcase %>
-    <%= render partial: 'likes/modal', locals: { likeable: comment, parent: commentable, type: } %>
-    <%= render partial: 'likes/button', locals: { likeable: comment, liker: user, type: } %>
+    <%= render partial: 'likes/compartment', locals: { likeable: comment, parent: commentable, type:, liker: user } %>
   </article>
 <% end %>
