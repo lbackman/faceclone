@@ -15,4 +15,16 @@ class Post < ApplicationRecord
   scope :of_friends_and_user, ->(user) do
     where("author_id IN (?) OR author_id = ?", User.friends(user).pluck(:id), user.id)
   end
+
+  def liked_by?(user)
+    likes.where(user: user).any?
+  end
+
+  def like(user)
+    likes.where(user: user).first_or_create
+  end
+
+  def unlike(user)
+    likes.where(user: user).destroy_all
+  end
 end

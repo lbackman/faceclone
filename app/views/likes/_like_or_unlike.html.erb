@@ -1,0 +1,5 @@
+<% if likeable.liked_by?(liker) %>
+  <span class="<%= type %>"><i class="bi bi-hand-thumbs-down-fill"></i> Unlike</span>
+<% else %>
+  <span class="<%= type %>"><i class="bi bi-hand-thumbs-up-fill"></i> Like</span>
+<% end %>

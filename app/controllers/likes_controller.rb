@@ -9,22 +9,4 @@ class LikesController < ApplicationController
               .where(likeable_type: @type, likeable_id: params[:id])
               .includes(user: [:user_information, avatar_attachment: :blob])
   end
-
-  def create
-    @like = current_user.likes.new(like_params)
-    @like.save
-    redirect_back(fallback_location: root_path)
-  end
-
-  def destroy
-    @like = current_user.likes.find(params[:id])
-    @like.destroy
-    redirect_back(fallback_location: root_path)
-  end
-
-  private
-
-  def like_params
-    params.require(:like).permit(:likeable_id, :likeable_type)
-  end
 end

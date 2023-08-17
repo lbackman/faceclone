@@ -14,4 +14,8 @@ module LikesHelper
       "#{number_of_likes} people like this"
     end
   end
+
+  def like_path_for_likeable(likeable, type)
+    send("#{type}_like_path".to_sym, likeable)
+  end
 end

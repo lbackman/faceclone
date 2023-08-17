@@ -26,7 +26,7 @@ RSpec.describe 'Likes index for a post', type: :system do
   it 'unliking the post will again remove the liker from the index' do
     find('button.post.like').click
     sleep(0.1)
-    find('button.post.unlike').click
+    find('button.post.like').click
 
     visit post_likes_path(@post)
     expect(page).to_not have_content(@post_liker.full_name)

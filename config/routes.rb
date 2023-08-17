@@ -16,13 +16,16 @@ Rails.application.routes.draw do
 
   resources :posts, only: :index do
     resources :comments, module: :posts
+    resource :like, module: :posts
   end
 
-  resources :comments
+  resources :comments do
+    resource :like, module: :comments
+  end
 
   resources :friend_requests, only: [:create, :update, :destroy]
 
-  resources :likes, only: [:create, :destroy]
+  # resources :likes, only: [:create, :destroy]
   get 'posts/:id/likes', to: 'likes#index', as: :post_likes
   get 'posts/:post_id/comments/:id/likes', to: 'likes#index', as: :comment_likes
 

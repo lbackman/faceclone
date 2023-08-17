@@ -1,22 +1,7 @@
-<% like = liker.likes.find_by(likeable: likeable) %>
-<% type ||= '' %>
+<% type = likeable.class.to_s.downcase %>
 
-<% if like.nil? %>
-  <%# the form_with helper automatically excludes form authenticity token over turbo stream %>
-  <%= form_with url: "/likes", method: :post do %>
-    <input type="hidden" name="like[likeable_id]" value="<%= likeable.id %>" autocomplete="off">
-    <input type="hidden" name="like[likeable_type]" value="<%= likeable.class.to_s %>" autocomplete="off">
-    <button class="btn btn-sm btn-success <%= likeable.class.to_s.downcase %> like" type="submit">
-      <span class="<%= type %>"><i class="bi bi-hand-thumbs-up-fill"></i> Like</span>
-    </button>
-  <% end %>
-  
-<% else %>
-  <form action="<%= like_path(like) %>" method="post">
-    <input type="hidden" name="_method" value="delete" autocomplete="off">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" autocomplete="off">
-    <button class="btn btn-sm btn-success <%= likeable.class.to_s.downcase %> unlike" type="submit">
-      <span class="<%= type %>"><i class="bi bi-hand-thumbs-down-fill"></i> Unlike</span>
-    </button>
-  </form>
+<%= form_with url: like_path_for_likeable(likeable, type), method: :patch do %>
+  <button class="btn btn-sm btn-success <%= type %> like" type="submit">
+    <%= render 'likes/like_or_unlike', liker:, likeable:, type: %>
+  </button>
 <% end %>

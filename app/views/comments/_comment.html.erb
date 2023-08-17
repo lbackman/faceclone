@@ -10,7 +10,6 @@
         <%= render "comments/user_controls", comment: comment if defined?(author) && author == comment.author %>
       </div>
     </div>
-    <% type = comment.class.to_s.downcase %>
-    <%= render partial: 'likes/compartment', locals: { likeable: comment, parent: commentable, type:, liker: user } %>
+    <%= render partial: 'likes/likes', locals: { likeable: comment, parent: commentable, liker: user } %>
   </article>
 <% end %>
