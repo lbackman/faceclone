@@ -1,19 +1,14 @@
 class Posts::LikesController < ApplicationController
-  before_action :set_post
-
-  def update
-    if @post.liked_by?(Current.user)
-      @post.unlike(Current.user)
-    else
-      @post.like(Current.user)
-    end
-
-    render partial: 'likes/likes', locals: { likeable: @post, liker: Current.user, parent: nil }
-  end
+  include Likeable
+  before_action :set_likeable, :set_parent
 
   private
 
-    def set_post
-      @post = Post.find(params[:post_id])
+    def set_likeable
+      @likeable = Post.find(params[:post_id])
+    end
+
+    def set_parent
+      @parent = nil
     end
 end
