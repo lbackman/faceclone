@@ -1,8 +1,9 @@
 module LikesHelper
-  def likes_index_path(likeable:, parent:)
-    if parent
-      comment_likes_path(parent, likeable)
-    else
+  def likes_index_path(likeable)
+    case likeable.class.to_s
+    when "Comment"
+      comment_likes_path(likeable)
+    when "Post"
       post_likes_path(likeable)
     end
   end

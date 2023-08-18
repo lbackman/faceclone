@@ -22,19 +22,19 @@ RSpec.describe 'Likes index for a comment', type: :system do
   end
 
   it 'the post liker does not show up in the comment likes index' do
-    visit comment_likes_path(@post, @comment)
+    visit comment_likes_path(@comment)
     expect(page).to_not have_content(@post_liker.full_name)
   end
 
   it 'the comment likes index is empty if no likes yet' do
-    visit comment_likes_path(@post, @comment)
+    visit comment_likes_path(@comment)
     expect(page).to_not have_content(@comment_liker.full_name)
   end
 
   it 'liking a post will add the liker to the likes index' do
     find('button.comment.like').click
 
-    visit comment_likes_path(@post, @comment)
+    visit comment_likes_path(@comment)
     expect(page).to have_content(@comment_liker.full_name)
   end
 

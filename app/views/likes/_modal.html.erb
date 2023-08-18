@@ -26,7 +26,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <%= turbo_frame_tag "#{type}_likes_#{likeable.id}", src: likes_index_path(likeable:, parent:), loading: "lazy" do %>
+          <%= turbo_frame_tag "#{type}_likes_#{likeable.id}", src: likes_index_path(likeable), loading: "lazy" do %>
             <div>Likes go here...</div>
           <% end %>
         </div>

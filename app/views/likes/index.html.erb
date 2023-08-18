@@ -1,5 +1,5 @@
 <h1>Likes index</h1>
-<%= turbo_frame_tag "#{@type.downcase}_likes_#{params[:id]}" do %>
+<%= turbo_frame_tag "#{@type.downcase}_likes_#{@likeable.id}" do %>
   <p>Who liked this <%= @type.downcase %>:</p>
   <% @likes.each do |like| %>
     <%= render 'users/user_with_avatar',

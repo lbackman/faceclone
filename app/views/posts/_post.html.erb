@@ -5,7 +5,7 @@
       <p class="pt-3 ms-2"><%= post.body %></p>
       <%= render 'shared/date_published', date_published: post.created_at %>
       <br>
-      <%= render partial: 'likes/likes', locals: { likeable: post, parent: nil, liker: user } %>
+      <%= render partial: 'likes/likes', locals: { likeable: post, liker: user } %>
   </article>
 
   <%= turbo_stream_from user&.to_gid_param %>
