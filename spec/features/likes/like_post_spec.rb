@@ -18,7 +18,8 @@ RSpec.describe 'Likes index for a post', type: :system do
 
   it 'liking a post will add the liker to the likes index' do
     find('button.post.like').click
-
+    # Need sleep since adding turboframe
+    sleep(0.1)
     visit post_likes_path(@post)
     expect(page).to have_content(@post_liker.full_name)
   end
