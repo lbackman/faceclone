@@ -1,9 +1,9 @@
 class Comment < ApplicationRecord
+  include Models::Likeable
   include ActionView::RecordIdentifier
 
   belongs_to :author, class_name: 'User'
   belongs_to :commentable, polymorphic: true, optional: true, counter_cache: true
-  has_many :likes, as: :likeable, dependent: :destroy
 
   validates :body, presence: true
 
@@ -29,16 +29,4 @@ class Comment < ApplicationRecord
   after_destroy_commit -> {
     broadcast_remove_to self
   }
-
-  def liked_by?(user)
-    likes.where(user: user).any?
-  end
-
-  def like(user)
-    likes.where(user: user).first_or_create
-  end
-
-  def unlike(user)
-    likes.where(user: user).destroy_all
-  end
 end
