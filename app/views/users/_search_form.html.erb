@@ -1,0 +1,12 @@
+<%= form_with url: search_path,
+              method: :get,
+              class: "search-form d-flex mb-2",
+              data: {
+                turbo_frame: turbo_id,
+                turbo_action: "advance",
+                controller: "form",
+                action: "input->form#submit" } do |form| %>
+  <%= form.label :search, "Search for:", class: "form-control visually-hidden" %>
+  <%= form.text_field :search, class: "form-control w-50" %>
+  <%= form.submit "Search", class: "ms-2 btn btn-outline-primary btn-sm" %>
+<% end %>

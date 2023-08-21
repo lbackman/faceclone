@@ -1,16 +1,5 @@
 <h1>Users</h1>
-<%= form_with url: users_path,
-              method: :get,
-              class: "search-form d-flex mb-2",
-              data: {
-                turbo_frame: "users",
-                turbo_action: "advance",
-                controller: "form",
-                action: "input->form#submit" } do |form| %>
-  <%= form.label :search, "Search for:", class: "form-control visually-hidden" %>
-  <%= form.text_field :search, class: "form-control w-50" %>
-  <%= form.submit "Search", class: "ms-2 btn btn-outline-primary btn-sm" %>
-<% end %>
+<%= render 'search_form', search_path: users_path, turbo_id: 'users' %>
 <%= turbo_frame_tag "users" do %>
   <% @users.each do |faceclone_user, friend_request| %>
     <%= render 'user_with_avatar', user: faceclone_user, avatar_resolution: 100, options: {data: { turbo_frame: "_top" }} %>
