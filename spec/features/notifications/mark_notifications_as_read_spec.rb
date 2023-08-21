@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Mark notifications as read', type: :system do
 
   before do
-    @sender_1 = FactoryBot.create(:user)
-    @sender_2 = FactoryBot.create(:user)
-    @receiver = FactoryBot.create(:user)
+    @sender_1 = FactoryBot.create(:user_with_info)
+    @sender_2 = FactoryBot.create(:user_with_info)
+    @receiver = FactoryBot.create(:user_with_info)
     FactoryBot.create(:friend_request, sender: @sender_1, receiver: @receiver)
     FactoryBot.create(:friend_request, sender: @sender_2, receiver: @receiver)
     FactoryBot.create(:friend_request, sender: @sender_1, receiver: @sender_2)

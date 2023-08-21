@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Likes index for a post', type: :system do
 
   before do
-    @post_author = FactoryBot.create(:user)
-    @post_liker = FactoryBot.create(:user)
+    @post_author = FactoryBot.create(:user_with_info)
+    @post_liker = FactoryBot.create(:user_with_info)
     FactoryBot.create(:friend_request, sender: @post_author, receiver: @post_liker, accepted: true)
     @post = FactoryBot.create(:post, author: @post_author, body: "Test post")
     login_as(@post_liker)

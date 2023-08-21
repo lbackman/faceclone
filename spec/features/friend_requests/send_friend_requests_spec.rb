@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Sending a friend request', type: :system do
 
   before do
-    sender = FactoryBot.create(:user)
-    receiver = FactoryBot.create(:user)
+    sender = FactoryBot.create(:user_with_info)
+    receiver = FactoryBot.create(:user_with_info)
     login_as(sender)
     visit user_path(receiver)
   end

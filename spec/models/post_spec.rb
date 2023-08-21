@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:author) { FactoryBot.create(:user) }
-  let(:liker) { FactoryBot.create(:user) }
-  let(:other) { FactoryBot.create(:user) }
+  let(:author) { FactoryBot.create(:user_with_info) }
+  let(:liker) { FactoryBot.create(:user_with_info) }
+  let(:other) { FactoryBot.create(:user_with_info) }
 
   context 'liking and unliking a post' do
     before(:each) do

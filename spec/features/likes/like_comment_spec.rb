@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe 'Likes index for a comment', type: :system do
 
   before do
-    @post_author = FactoryBot.create(:user)
-    @post_liker = FactoryBot.create(:user)
-    @comment_author = FactoryBot.create(:user)
-    @comment_liker = FactoryBot.create(:user)
+    @post_author = FactoryBot.create(:user_with_info)
+    @post_liker = FactoryBot.create(:user_with_info)
+    @comment_author = FactoryBot.create(:user_with_info)
+    @comment_liker = FactoryBot.create(:user_with_info)
     FactoryBot.create(:friend_request, sender: @post_author, receiver: @post_liker, accepted: true)
     FactoryBot.create(:friend_request, sender: @post_author, receiver: @comment_author, accepted: true)
     FactoryBot.create(:friend_request, sender: @post_author, receiver: @comment_liker, accepted: true)

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserInformation, type: :model do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user_with_info) }
   it "when a field is left empty, it does not update to an empty string" do
     user.user_information.update(hometown: "")
 

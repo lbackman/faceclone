@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  let(:liker) { FactoryBot.create(:user) }
-  let(:author) { FactoryBot.create(:user) }
+  let(:liker) { FactoryBot.create(:user_with_info) }
+  let(:author) { FactoryBot.create(:user_with_info) }
   let(:likeable) { FactoryBot.create(:post, author: author) }
 
   context "Can't like a thing more than once" do
