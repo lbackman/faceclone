@@ -78,4 +78,23 @@ class User < ApplicationRecord
 
   # Comments
   has_many :comments, foreign_key: :author_id, dependent: :nullify
+
+  def self.search(search_term)
+    if search_term && search_term != ''
+      searches = []
+      terms = search_term.downcase.split
+      terms.each do |term|
+        searches <<
+        User
+          .joins(:user_information)
+          .where(
+            "lower(user_informations.first_name) LIKE ? OR lower(user_informations.last_name) LIKE ?",
+            "%#{term}%",
+            "%#{term}%")
+      end
+      searches.reduce(:and)
+    else
+      all
+    end
+  end
 end

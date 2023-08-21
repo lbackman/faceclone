@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def index
-    index_users = User.includes(:user_information, avatar_attachment: :blob).order(:created_at)
+    index_users = User
+                  .search(params[:search])
+                  .includes(:user_information, avatar_attachment: :blob)
+                  .order(:created_at)
     @users = {}
     index_users.each do |user|
       @users[user] = FriendRequest.mutual(user, current_user) || FriendRequest.new

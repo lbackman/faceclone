@@ -1,5 +1,9 @@
 <h1>Users</h1>
-
+<%= form_with url: users_path, method: :get, class: "search-form d-flex mb-2" do |form| %>
+  <%= form.label :search, "Search for:", class: "form-control visually-hidden" %>
+  <%= form.text_field :search, class: "form-control w-50" %>
+  <%= form.submit "Search", class: "ms-2 btn btn-outline-primary btn-sm" %>
+<% end %>
 <div id="users">
   <% @users.each do |faceclone_user, friend_request| %>
     <%= render 'user_with_avatar', user: faceclone_user, avatar_resolution: 100 %>
