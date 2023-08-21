@@ -1,6 +1,20 @@
 <h1>Friends</h1>
-<% @friends.each do |friend| %>
-  <%= render 'user_with_avatar', user: friend, avatar_resolution: 100 %>
+<%= form_with url: friends_user_path(@user),
+              method: :get,
+              class: "search-form d-flex mb-2",
+              data: {
+                turbo_frame: "friends",
+                turbo_action: "advance",
+                controller: "form",
+                action: "input->form#submit" } do |form| %>
+  <%= form.label :search, "Search for:", class: "form-control visually-hidden" %>
+  <%= form.text_field :search, class: "form-control w-50" %>
+  <%= form.submit "Search", class: "ms-2 btn btn-outline-primary btn-sm" %>
+<% end %>
+<%= turbo_frame_tag "friends" do %>
+  <% @friends.each do |friend| %>
+    <%= render 'user_with_avatar', user: friend, avatar_resolution: 100 %>
+  <% end %>
 <% end %>
 
 <%= link_to "Back to user page", user_path(@user) %> |
