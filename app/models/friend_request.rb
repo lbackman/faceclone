@@ -26,6 +26,15 @@ class FriendRequest < ApplicationRecord
     FriendRequest.find_by(sender: [user_1, user_2], receiver: [user_1, user_2])
   end
 
+  def self.sent_or_received(user, direction)
+    case direction
+    when "sent"
+      FriendRequest.sent(user)
+    else
+      FriendRequest.received(user)
+    end
+  end
+
   private
 
   def notify_receiver
