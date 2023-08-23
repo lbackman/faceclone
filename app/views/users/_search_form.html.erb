@@ -5,6 +5,7 @@
                 turbo_frame: turbo_id,
                 turbo_action: "advance",
                 controller: "form",
+                form_timeout_value: 300,
                 action: "input->form#submit" } do |form| %>
   <%= form.label :search, "Search for:", class: "form-control visually-hidden" %>
   <%= form.text_field :search, class: "form-control w-50" %>
