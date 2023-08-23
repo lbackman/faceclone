@@ -6,7 +6,7 @@ require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'webdrivers'
-Webdrivers::Chromedriver.required_version = '114.0.5735.90'
+# Webdrivers::Chromedriver.required_version = '114.0.5735.90'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -67,7 +67,10 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   # specify the required driver for Capybara
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
+    # driven_by :selenium_chrome_headless
+    # driven_by :selenium, using: :firefox
+    options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless'])
+    @driver = Selenium::WebDriver.for :firefox, options: options
   end
 end
 
