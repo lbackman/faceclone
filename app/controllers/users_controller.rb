@@ -1,16 +1,13 @@
 class UsersController < ApplicationController
   def index
-    index_users = User
-                  .search(params[:search])
-                  .includes(:user_information, avatar_attachment: :blob)
-                  .order(:created_at)
-    @users = {}
-    index_users.each do |user|
-      @users[user] = FriendRequest.mutual(user, current_user) || FriendRequest.new
-    end
+    @users = User
+              .search(params[:search])
+              .includes(:user_information, avatar_attachment: :blob)
+              .order(:created_at)
 
-    @users.each do |_user, friend_request|
-      mark_friend_request_notifications_as_read(friend_request)
+    @users.each do |user|
+      friend_request = FriendRequest.mutual(user, current_user)
+      mark_friend_request_notifications_as_read(friend_request) if friend_request
     end
   end
 

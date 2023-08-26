@@ -54,6 +54,10 @@ class User < ApplicationRecord
     )
   end
 
+  def friend_status(other_user)
+    FriendRequest.find_by(sender: [self, other_user], receiver: [self, other_user])
+  end
+
   # User information
   has_one :user_information, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :user_information
