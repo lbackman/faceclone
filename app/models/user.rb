@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  paginates_per 3
   has_one_attached :avatar
   validates :avatar,
             content_type: ['image/png', 'image/jpeg'],

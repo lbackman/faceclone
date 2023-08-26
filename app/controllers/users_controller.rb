@@ -4,6 +4,7 @@ class UsersController < ApplicationController
               .search(params[:search])
               .includes(:user_information, avatar_attachment: :blob)
               .order(:created_at)
+              .page(params[:page])
 
     @users.each do |user|
       friend_request = FriendRequest.mutual(user, current_user)
