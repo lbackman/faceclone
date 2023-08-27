@@ -5,7 +5,7 @@
     <% elsif user.sent_friend_request_to?(other_user) %>
       <%= button_to "Remove Friend Request", friend_request, method: :delete %>
     <% elsif user.received_friend_request_from?(other_user) %>
-      <%= button_to "Accept Friend Request", friend_request, method: :patch %>
+      <%= button_to "Accept Friend Request", friend_request, method: :patch, data: { turbo: params[:id].present? ? "false" : "true" } %>
       <%= button_to "Decline Friend Request", friend_request, method: :delete %>
     <% else %>
       <%= button_to "Add Friend", friend_request, params: {
