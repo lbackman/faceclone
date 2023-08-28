@@ -4,5 +4,5 @@
     <%= render partial: 'form', locals: { author: Current.user, post: Post.new } %>
   </div>
   <%= render partial: 'index', locals: { posts: @posts, user: Current.user } %>
-  <%= paginate @posts %>
+  <%= paginate @posts, theme: 'posts' %>
 </div>
