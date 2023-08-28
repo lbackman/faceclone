@@ -13,4 +13,5 @@
   <% end %>
   
   <%= render partial: 'posts/index', locals: { posts: @posts, user: Current.user } %>
+  <%= paginate @posts %>
 </div>

@@ -5,8 +5,9 @@ class PostsController < ApplicationController
   def index
     @posts = Post
       .of_friends_and_user(current_user)
-      .order(created_at: :desc)
       .with_author_information
+      .order(created_at: :desc)
+      .page(params[:page])
   end
 
   # GET users/1/posts/1 or users/1/posts/1.json

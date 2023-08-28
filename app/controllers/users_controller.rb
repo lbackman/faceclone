@@ -16,9 +16,9 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
     @friend_request = FriendRequest.mutual(current_user, @user) || FriendRequest.new
     if current_user == @user || current_user.friends_with?(@user)
-      @posts = Post.where(author: @user).with_author_information.order(created_at: :desc)
+      @posts = Post.where(author: @user).with_author_information.order(created_at: :desc).page(params[:page])
     else
-      @posts = Post.where(author: nil)
+      @posts = Post.where(author: nil).page(params[:page])
     end
 
     mark_friend_request_notifications_as_read(@friend_request)

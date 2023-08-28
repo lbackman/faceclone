@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  paginates_per 2
   include Models::Likeable
 
   belongs_to :author, class_name: 'User'

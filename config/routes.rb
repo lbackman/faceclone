@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, only: :index do
+  resources :posts, only: :index, concerns: :paginatable do
     resources :comments, module: :posts
     resource :like, module: :posts
     resources :likes, only: :index, module: :posts
