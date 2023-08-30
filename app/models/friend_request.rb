@@ -14,12 +14,12 @@ class FriendRequest < ApplicationRecord
 
   scope :sent, ->(user) {
     FriendRequest
-      .includes(receiver: [:user_information, avatar_attachment: :blob])
+      .includes(:sender, receiver: [:user_information, avatar_attachment: :blob])
       .where(sender: user, accepted: false) }
 
   scope :received, ->(user) {
     FriendRequest
-    .includes(sender: [:user_information, avatar_attachment: :blob])
+    .includes(:receiver, sender: [:user_information, avatar_attachment: :blob])
     .where(receiver: user, accepted: false) }
 
   def self.mutual(user_1, user_2)
