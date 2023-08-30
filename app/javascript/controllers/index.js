@@ -10,5 +10,8 @@ application.register("flash", FlashController)
 import FormController from "./form_controller"
 application.register("form", FormController)
 
+import FriendRequestController from "./friend_request_controller"
+application.register("friend-request", FriendRequestController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

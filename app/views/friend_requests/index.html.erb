@@ -24,7 +24,11 @@
       <% else %>
         <% other_user = friend_request.receiver %>
       <% end %>
-      <div id="friend_request_<%= friend_request.id %>" class="row my-3 py-2 border rounded">
+      <div
+        id="friend_request_<%= friend_request.id %>"
+        class="row my-3 py-2 border rounded"
+        data-controller="friend-request"
+        data-friend-request-id-value="<%= friend_request.id %>">
         <div class="col pt-2">
           <%= render 'users/user_with_avatar',
                       user: other_user,
@@ -35,7 +39,8 @@
           <%= render 'users/friend_buttons',
                       user: Current.user,
                       other_user:,
-                      friend_request: %>
+                      friend_request:,
+                      action: "turbo:submit-end->friend-request#removeElement" %>
         </div>
       </div>
     <% end %>
