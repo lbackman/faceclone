@@ -14,6 +14,6 @@
   </span>
 <% else %>
   <span class="page-item">
-    <%= link_to page, url, remote: remote, rel: page.rel, class: 'page-link' %>
+    <%= link_to page, url, remote: remote, rel: page.rel, class: 'page-link', data: { turbo_action: "advance" } %>
   </span>
 <% end %>
