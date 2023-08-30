@@ -1,16 +1,34 @@
 <% unless user == other_user %>
+  <% action ||= nil %>
   <%= turbo_frame_tag friend_buttons_id(user.id, other_user.id), target: '_top' do %>
     <% if user.friends_with?(other_user) %>
-      <%= button_to "Unfriend", friend_request, method: :delete, class: 'btn btn-sm btn-danger', data: { turbo_confirm: "Are you sure?" } %>
+      <%= button_to "Unfriend",
+                    friend_request,
+                    method: :delete,
+                    class: 'btn btn-sm btn-danger',
+                    data: { turbo_confirm: "Are you sure?" } %>
     <% elsif user.sent_friend_request_to?(other_user) %>
-      <%= button_to "Remove Friend Request", friend_request, class: 'btn btn-sm btn-secondary', method: :delete %>
+      <form class="button_to" method="post" action="<%= friend_request_path(friend_request)%>" data-action="<%= action %>">
+        <input type="hidden" name="_method" value="delete" autocomplete="off">
+        <button class="btn btn-sm btn-secondary" type="submit">Remove Friend Request</button>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" autocomplete="off">
+      </form>
     <% elsif user.received_friend_request_from?(other_user) %>
-      <%= button_to "Accept Friend Request", friend_request, class: 'btn btn-sm btn-success', method: :patch, data: { turbo: params[:id].present? ? "false" : "true" } %>
-      <%= button_to "Decline Friend Request", friend_request, class: 'btn btn-sm btn-secondary', method: :delete %>
+      <form class="button_to" method="post" action="<%= friend_request_path(friend_request)%>" data-action="<%= action %>">
+        <input type="hidden" name="_method" value="patch" autocomplete="off">
+        <button class="btn btn-sm btn-success" data-turbo="<%= params[:id].present? ? "false" : "true" %>" type="submit">Accept Friend Request</button>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" autocomplete="off">
+      </form>
+      <form class="button_to" method="post" action="<%= friend_request_path(friend_request)%>" data-action="<%= action %>">
+        <input type="hidden" name="_method" value="delete" autocomplete="off">
+        <button class="btn btn-sm btn-secondary" type="submit">Decline Friend Request</button>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" autocomplete="off">
+      </form>
     <% else %>
-      <%= button_to "Add Friend", friend_request, class: 'btn btn-sm btn-primary', params: {
-        friend_request: {sender_id: user.id, receiver_id: other_user.id}
-      } %>
+      <%= button_to "Add Friend",
+                    friend_request,
+                    class: 'btn btn-sm btn-primary',
+                    params: { friend_request: {sender_id: user.id, receiver_id: other_user.id} } %>
     <% end %>
   <% end %>
 <% end %>
