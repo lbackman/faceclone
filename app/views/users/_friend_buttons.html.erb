@@ -1,5 +1,6 @@
 <% unless user == other_user %>
   <% action ||= nil %>
+  <% turbo  ||= nil %>
   <%= turbo_frame_tag friend_buttons_id(user.id, other_user.id), target: '_top' do %>
     <% if user.friends_with?(other_user) %>
       <%= button_to "Unfriend",
@@ -16,7 +17,7 @@
     <% elsif user.received_friend_request_from?(other_user) %>
       <form class="button_to" method="post" action="<%= friend_request_path(friend_request)%>" data-action="<%= action %>">
         <input type="hidden" name="_method" value="patch" autocomplete="off">
-        <button class="btn btn-sm btn-success" data-turbo="<%= params[:id].present? ? "false" : "true" %>" type="submit">Accept Friend Request</button>
+        <button class="btn btn-sm btn-success" data-turbo="<%= turbo %>" type="submit">Accept Friend Request</button>
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" autocomplete="off">
       </form>
       <form class="button_to" method="post" action="<%= friend_request_path(friend_request)%>" data-action="<%= action %>">
