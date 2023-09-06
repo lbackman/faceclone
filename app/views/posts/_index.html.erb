@@ -1,5 +1,5 @@
 <% posts.each do |post| %>
-  <div class="container mb-3 card">
+  <div class="container mb-3 card bg-light-subtle">
     <%= render post, user: %>
     <%= link_to "Show this post", user_post_path(post.author, post) %>
   </div>

@@ -1,6 +1,6 @@
 <%= turbo_stream_from comment %>
 <%= turbo_frame_tag dom_id(comment) do %>
-  <article class="container card mb-2 py-2">
+  <article class="container card mb-2 py-2 bg-body-secondary">
     <div style="font-size: 0.875rem;">
       <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>
       <p class="pt-2 ms-2"><%= comment.body %></p>
