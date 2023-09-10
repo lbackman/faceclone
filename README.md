@@ -1,4 +1,4 @@
-# Faceclone
+# Odin Social Media App
 
 This is the [Final Assignment](https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project) in The Odin Project’s Ruby on Rails Curriculum.
 The objective of the project is to build a "clone" of Facebook.
