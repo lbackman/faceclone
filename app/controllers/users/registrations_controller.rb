@@ -40,10 +40,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   def after_update_path_for(resource)
     user_path(resource)
+  end
+
+  def update_resource(resource, params)
+    if current_user.uid && current_user.provider
+      resource.update_without_password(params)
+    else
+      super
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
