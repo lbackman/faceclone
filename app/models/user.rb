@@ -7,9 +7,10 @@ class User < ApplicationRecord
             dimension: { width: { in: 80..250 }, height: { in: 80..250 } },
             aspect_ratio: :square
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable and :trackable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook]
 
   # Friendships as sender
   has_many :sent_friend_requests,
@@ -80,10 +81,20 @@ class User < ApplicationRecord
   has_many :notifications, as: :recipient, dependent: :destroy
 
   # Likes
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   # Comments
   has_many :comments, foreign_key: :author_id, dependent: :nullify
+
+  # OmniAuth
+  def self.from_omniauth(auth)
+    user = User.find_by(email: auth.info.email)
+    unless user
+      user = User.create!(provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20])
+      user.create_user_information!(first_name: auth.info.first_name, last_name: auth.info.last_name)
+    end
+    user
+  end
 
   private
 

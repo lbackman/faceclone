@@ -16,6 +16,7 @@
 
 require 'capybara/rspec'
 require 'active_storage_validations/matchers'
+require 'omniauth'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -49,6 +50,8 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.include ActiveStorageValidations::Matchers
+
+  # config.include IntegrationSpecHelper, :type => :request
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
@@ -98,3 +101,39 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+  provider: 'facebook',
+  uid: '1234567',
+  info: {
+    email: 'joe_bloggs@example.com',
+    name: 'Joe Bloggs',
+    first_name: 'Joe',
+    last_name: 'Bloggs',
+    image: 'http://graph.facebook.com/1234567/picture?type=square',
+    verified: true
+  },
+  credentials: {
+    token: 'ABCDEF...',
+    expires_at: 1321747205,
+    expires: true
+  },
+  extra: {
+    raw_info: {
+      id: '1234567',
+      name: 'Joe Bloggs',
+      first_name: 'Joe',
+      last_name: 'Bloggs',
+      link: 'http://www.facebook.com/jbloggs',
+      username: 'jbloggs',
+      location: { id: '123456789', name: 'Palo Alto, California' },
+      gender: 'male',
+      email: 'joe_bloggs@example.com',
+      timezone: -8,
+      locale: 'en_US',
+      verified: true,
+      updated_time: '2011-11-11T06:21:03+0000',
+    }
+  }
+})
