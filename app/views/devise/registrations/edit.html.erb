@@ -3,7 +3,7 @@
   <%= button_to "Remove avatar", purge_avatar_user_path(resource),
                 data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
                 method: :delete,
-                class: "btn btn-sm btn-secondary" %>
+                class: "btn btn-sm btn-secondary mb-2" %>
 <% end %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -14,7 +14,8 @@
         <%= render_user_avatar(resource, 100, class: "rounded") %>
       </div>
       <div class="col-sm-8">
-        <%= f.label :avatar, "Profile picture", class: "form-label" %>
+        <em>Your profile picture must be a square png or jpeg image no larger than 250x250</em><br>
+        <%= f.label :avatar, "Profile picture", class: "form-label visually-hidden" %>
         <%= f.file_field :avatar, class: "form-control form-control-lg mb-1", accept: 'image/png,image/jpeg' %>
       </div>
     </div>
@@ -28,10 +29,13 @@
     <div class="form-group w-50">
       <div class="field">
       <%= form.label :date_of_birth %><br />
-      <%= form.date_select :date_of_birth,
-                           start_year: Date.today.year - 120,
-                           end_year: Date.today.year,
-                           order: [:day, :month, :year] %>
+      <div class="d-flex">
+        <%= form.date_select :date_of_birth,
+                             {start_year: Date.today.year - 120,
+                             end_year: Date.today.year,
+                             order: [:day, :month, :year]},
+                             {class: "form-select"} %>
+      </div>
       </div>
       <div class="field">
         <%= form.label :hometown, "Hometown", class: "form-label" %>
@@ -51,23 +55,22 @@
   <% end %>
 
   <% unless resource.provider && resource.uid %>
-    <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <div style="width:min(60%, 360px);">
+      <div class="field">
+        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb-2" %>
+        <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb-4" %>
+      </div>
+      <div class="field">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control mb-2" %>
+      </div>
     </div>
   <% end %>
 
@@ -90,7 +93,7 @@
                             data: { confirm: "Are you sure?",
                             turbo_confirm: "Are you sure?" },
                             method: :delete,
-                            class: "btn btn-danger" %></div>
+                            class: "btn btn-danger mt-2" %></div>
       </div>
     </div>
   </div>
