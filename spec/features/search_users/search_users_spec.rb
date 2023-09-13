@@ -66,7 +66,7 @@ RSpec.describe 'Search users', type: :system do
   end
 
   context 'on user\'s friends page' do
-    it 'the user whose user page it is is not visible' do
+    it 'the user whose user page it is not visible' do
       visit friends_user_path(@alice)
 
       verify_users(on_page: [@bob], not_on_page: [@alice, @allison])
