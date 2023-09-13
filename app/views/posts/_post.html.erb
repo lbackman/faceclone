@@ -1,11 +1,14 @@
-<div class="container" id="<%= dom_id post %>">
+<div class="container p-2 card bg-light-subtle" id="<%= dom_id post %>">
   
   <article class="container mb-2">
+    <div class="d-flex justify-content-between">
       <%= render 'shared/author', text: post, thumbnail: "thumbnail-md" %>
-      <p class="pt-3 ms-2"><%= post.body %></p>
       <%= render 'shared/date_published', date_published: post.created_at %>
-      <br>
-      <%= render partial: 'likes/likes', locals: { likeable: post, liker: user } %>
+    </div>
+
+    <p class="pt-3 ms-2"><%= post.body %></p>
+
+    <%= render partial: 'likes/likes', locals: { likeable: post, liker: user } %>
   </article>
 
   <%= turbo_stream_from user&.to_gid_param %>

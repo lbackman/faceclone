@@ -2,10 +2,13 @@
 <%= turbo_frame_tag dom_id(comment) do %>
   <article class="container card mb-2 py-2 bg-body-secondary">
     <div style="font-size: 0.875rem;">
-      <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>
-      <p class="pt-2 ms-2"><%= comment.body %></p>
       <div class="d-flex justify-content-between">
+        <%= render 'shared/author', text: comment, thumbnail: "thumbnail-sm" %>
         <%= render 'shared/date_published', date_published: comment.created_at %>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <p class="pt-2 ms-2"><%= comment.body %></p>
         <%= turbo_frame_tag ["controls", dom_id(comment)] %>
         <%= render "comments/user_controls", comment: comment if defined?(author) && author == comment.author %>
       </div>
