@@ -1,5 +1,5 @@
 <div class="container mb-5">
-  <%= render @user, friend_request: @friend_request %>
+  <%= render @user, friend_request: @friend_request, friend_amount: @friend_amount %>
   
   <% if @user == Current.user %>
     <div class="mb-3">

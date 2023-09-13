@@ -18,7 +18,7 @@
   <% end %>
   <%= link_to friends_user_path do %>
     <i class="bi bi-person-hearts"></i>
-    <span>Friends</span>
+    <span>Friends (<%= friend_amount %>)</span>
   <% end %>
   <% if Current.user == user %>
     <%= link_to user_friend_requests_path(user) do %>
