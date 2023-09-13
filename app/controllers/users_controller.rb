@@ -26,7 +26,11 @@ class UsersController < ApplicationController
 
   def friends
     @user = User.find_by_id(params[:id])
-    @friends = User.friends(@user).search(params[:search]).includes(:user_information, avatar_attachment: :blob)
+    @friends = User
+                .friends(@user)
+                .search(params[:search])
+                .includes(:user_information, avatar_attachment: :blob)
+                .page(params[:page])
   end
 
   def purge_avatar
