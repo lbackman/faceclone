@@ -1,14 +1,31 @@
-<div id="<%= dom_id user %>" class="card mb-3">
-    <%= render_user_avatar(user, 128, class: "rounded") %>
-    <strong><%= user.full_name %></strong>
-    <% if user.date_of_birth %>
-      <strong><%= user.date_of_birth.strftime("Born on %d/%m/%Y") %></strong>
+<div id="<%= dom_id user %>" class="card mb-3 p-2 bg-light-subtle">
+  <%= render_user_avatar(user, 128, class: "rounded") %>
+  <strong><%= user.full_name %></strong>
+  <% if user.date_of_birth %>
+    <strong><%= user.date_of_birth.strftime("Born on %d/%m/%Y") %></strong>
+  <% end %>
+  <% if user.hometown %>
+    <strong><%= user.hometown %></strong>
+  <% end %>
+  <% if user.about_me %>
+    <strong><%= user.about_me %></strong>
+  <% end %>
+  <% if Current.user == user %>
+    <%= link_to edit_user_registration_path do %>
+      <i class="bi bi-wrench"></i>
+      <span>Edit account</span>
     <% end %>
-    <% if user.hometown %>
-      <strong><%= user.hometown %></strong>
+  <% end %>
+  <%= link_to friends_user_path do %>
+    <i class="bi bi-person-hearts"></i>
+    <span>Friends</span>
+  <% end %>
+  <% if Current.user == user %>
+    <%= link_to user_friend_requests_path(user) do %>
+      <i class="bi bi-arrow-left-right"></i>
+      <span>Friend Requests</span>
     <% end %>
-    <% if user.about_me %>
-      <strong><%= user.about_me %></strong>
-    <% end %>
-    <%= link_to "Edit account", edit_user_registration_path if current_user == user %>
+  <% end %>
+  
+  <%= render 'friend_buttons', user: Current.user, other_user: user, friend_request:, turbo: "false" %>
 </div>

@@ -1,10 +1,5 @@
 <div class="container mb-5">
-  <%= render @user %>
-  
-  <%= link_to 'Friends', friends_user_path %>
-  <%= link_to 'Friend Requests', user_friend_requests_path(@user) if @user == Current.user %>
-  
-  <%= render 'friend_buttons', user: Current.user, other_user: @user, friend_request: @friend_request, turbo: "false" %>
+  <%= render @user, friend_request: @friend_request %>
   
   <% if @user == Current.user %>
     <div class="mb-3">
