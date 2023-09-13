@@ -2,7 +2,7 @@
 <%= render 'search_form', search_path: friends_user_path(@user), turbo_id: 'friends' %>
 <%= turbo_frame_tag "friends" do %>
   <% @friends.each do |friend| %>
-    <%= render 'user_with_avatar', user: friend, avatar_resolution: 100 %>
+    <%= render 'user_with_avatar', user: friend, avatar_resolution: 100, options: { class: "user-avatar" } %>
   <% end %>
 <% end %>
 
