@@ -1,7 +1,7 @@
 /* Gets rid of the little dropdown icon on notifications */
 .dropdown-toggle::after { content: none; }
 
-a#navbarUserDropdown, a#navbarNotificationDropdown, a.user-avatar { text-decoration: none; }
+a { text-decoration: none; }
 
 small.small { margin-left: 1rem; }
 
