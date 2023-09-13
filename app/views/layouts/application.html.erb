@@ -12,16 +12,18 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="bg-light">
-    <%= render 'layouts/navbar' %>
-  
-    <div class="container mt-5">
-
-      <div id="flash" class="flash">
-        <%= render 'layouts/flash' %>
+  <body>
+    <div id="page-container" class="bg-light">
+      <div id="content-wrap">
+        <%= render 'layouts/navbar' %>
+        <div class="container mt-5">
+          <div id="flash" class="flash">
+            <%= render 'layouts/flash' %>
+          </div>
+          <%= yield %>
+        </div>
       </div>
-
-      <%= yield %>
+      <%= render 'layouts/footer' %>
     </div>
   </body>
 </html>
