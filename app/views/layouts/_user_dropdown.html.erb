@@ -1,0 +1,41 @@
+<span class="nav-item dropdown">
+  <a href="#" id="navbarUserDropdown" class="navlink active text-white dropdown-toggle d-flex align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= render_user_avatar(Current.user, 64, class: "rounded-circle thumbnail-sm", style: "margin-right: 4px;") %>
+    <%= Current.user.first_name %>
+  </a>
+  <ul id="user-display" class="dropdown-menu dropdown-menu-lg-end p-2">
+    <li>
+      <%= link_to user_path(Current.user) do %>
+        <i class="bi bi-person-badge"></i>
+        <span>Profile</span>
+      <% end %>
+    </li>
+    <li>
+      <hr class="dropdown-divider">
+    </li>
+    <li>
+      <%= link_to edit_user_registration_path do %>
+        <i class="bi bi-wrench"></i>
+        <span>Settings</span>
+      <% end %>
+    </li>
+    <li>
+      <hr class="dropdown-divider">
+    </li>
+    <li>
+      <%= link_to friends_user_path(Current.user) do %>
+        <i class="bi bi-person-hearts"></i>
+        <span>Friends</span>
+      <% end %>
+    </li>
+    <li>
+      <hr class="dropdown-divider">
+    </li>
+    <li>
+      <%= link_to user_friend_requests_path(Current.user) do %>
+        <i class="bi bi-arrow-left-right"></i>
+        <span>Friend Requests</span>
+      <% end %>
+    </li>
+  </ul>
+</span>

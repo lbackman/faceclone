@@ -6,10 +6,7 @@
   </ul>
   <ul class="navbar-nav ml-auto">
     <li class="nav-item p-2 d-flex align-items-center">
-      <%= link_to current_user, class: 'nav-link active text-white d-flex align-items-center' do %>
-        <%= render_user_avatar(current_user, 64, class: "rounded-circle thumbnail-sm", style: "margin-right: 4px;") %>
-        <%= current_user.first_name %>
-      <% end %>
+      <%= render 'layouts/user_dropdown' %>
     </li>
     <li class="nav-item p-2 d-flex align-items-center">
       <%= render 'layouts/notifications' %>
