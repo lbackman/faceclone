@@ -1,7 +1,7 @@
 <% type = likeable.class.to_s.downcase %>
 
 <%= form_with url: like_path_for_likeable(likeable, type), method: :patch do %>
-  <button class="btn btn-sm btn-success <%= type %> like" type="submit">
+  <button class="btn btn-sm btn-success <%= type %> like mt-2" type="submit">
     <%= render 'likes/like_or_unlike', liker:, likeable:, type: %>
   </button>
 <% end %>

@@ -1,7 +1,8 @@
 <div class="align-self-center">
   <span
-    style="border-bottom: 1px dotted; text-decoration: none; width: fit-content"
+    style="text-decoration: none; width: fit-content"
     title="<%= date_published.localtime.to_fs(:db) %>">
-      <%= time_ago_in_words date_published %> ago
+    <i class="bi bi-clock-history"></i>
+    <em><%= time_ago_in_words date_published %> ago</em>
   </span>
 </div>

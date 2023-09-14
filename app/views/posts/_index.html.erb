@@ -1,6 +1,9 @@
 <% posts.each do |post| %>
   <div class="container mb-4">
     <%= render post, user: %>
-    <%= link_to "Show this post", user_post_path(post.author, post) %>
+    <%= link_to user_post_path(post.author, post) do %>
+      <i class="bi bi-link-45deg"></i>
+      <span>Show this post</span>
+    <% end %>
   </div>
 <% end %>
