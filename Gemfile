@@ -54,6 +54,9 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
+# Amazon S3
+gem "aws-sdk-s3", require: false
+
 # For ative storage validations
 gem 'active_storage_validations'
 # For image analysis and transformations
