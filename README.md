@@ -19,6 +19,8 @@ In the end it turned out that starting a new project and copying over the models
 
 ## Thoughts upon project completion
 
+[Link](https://osma.fly.dev)
+
 Well, this took a lot longer than anticipated.
 
 And I realized just how much complexity is involved in building a more fleshed out app.
